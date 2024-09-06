@@ -46,13 +46,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavHostController
+import androidx.navigation.NavController
+
 import androidx.navigation.compose.rememberNavController
 import com.example.pawsomepetcare.R
 import com.example.pawsomepetcare.ui.theme.PawsomePetCareTheme
 
 @Composable
-fun LoginScreen(navController: NavHostController, modifier: Modifier = Modifier) {
+fun LoginScreen(navController: NavController, modifier: Modifier = Modifier) {
 
     val colors = MaterialTheme.colorScheme
     val username = remember {
@@ -98,12 +99,11 @@ fun LoginScreen(navController: NavHostController, modifier: Modifier = Modifier)
         Box(
             modifier = Modifier
                 .offset(y = (-90).dp) // Move 100 dp up
-                .background(colors.background)
+                .background(colors.background, shape = shapes.small)
                 .border(
                     BorderStroke(0.2.dp, colors.primary),
                     shape = shapes.small
                 )
-                .clip(shape = shapes.small)
                 .padding(16.dp)
                 .widthIn(max = 300.dp)
                 .height(300.dp)
@@ -164,14 +164,14 @@ fun LoginScreen(navController: NavHostController, modifier: Modifier = Modifier)
                     },
                     shape = shapes.small,
                     colors = TextFieldDefaults.colors(
-                        focusedIndicatorColor = Color.Transparent, // Remove underline
-                        unfocusedIndicatorColor = Color.Transparent // Remove underline
+                        focusedIndicatorColor = Color.Transparent,
+                        unfocusedIndicatorColor = Color.Transparent
                     ),
                     visualTransformation = PasswordVisualTransformation(),
                 )
                 Spacer(modifier = Modifier.height(16.dp))
                 Button(
-                    onClick = { navController.navigate("SignUp") },
+                    onClick = { navController.navigate("Home") },
                     elevation = ButtonDefaults.buttonElevation(
                                 defaultElevation = 8.dp,
                                 focusedElevation = 8.dp,
