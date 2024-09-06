@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">PawsomePetCare</string>
+    <string name="landing_title_1">Discover the best for your furry friends at PawSome!</string>
+    <string name="landing_title_2">Find and shop for the best pet supplies from the comfort of your home</string>
+    <string name="landing_button_text">Let\'s Get Started</string>
+    <string name="landing_redirect">Already have an account?</string>
 </resources>
