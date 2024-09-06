@@ -1,5 +1,6 @@
 package com.example.pawsomepetcare.screens
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -9,8 +10,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
@@ -24,21 +26,22 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.pawsomepetcare.R
 import com.example.pawsomepetcare.ui.theme.PawsomePetCareTheme
 
 @Composable
-fun LandingScreen(modifier: Modifier = Modifier) {
+fun LandingScreen(navController:NavController,modifier: Modifier = Modifier) {
     val colors = MaterialTheme.colorScheme
     Column(
         modifier = modifier
             .fillMaxSize()
             .background(colors.background)
+            .verticalScroll(rememberScrollState())
     ) {
         Box(
            modifier = Modifier
@@ -63,7 +66,7 @@ fun LandingScreen(modifier: Modifier = Modifier) {
                                 colors.background.copy(0.5f),
                                 colors.background.copy(1f)
                             ),
-                            startY = 0f,
+                            startY = 400f,
                             endY = 1200f
                         )
                     )
@@ -101,24 +104,54 @@ fun LandingScreen(modifier: Modifier = Modifier) {
                 .height(16.dp)
             )
             Button(
-                onClick = { /*TODO*/ },
+                onClick = { navController.navigate("SignUp")},
+                elevation = ButtonDefaults.buttonElevation(
+                    defaultElevation = 8.dp,
+                    pressedElevation = 8.dp,
+                    focusedElevation = 8.dp
+                ),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = colors.primary, // This should use your green color
-                    contentColor = colors.onPrimary // Ensure this is set correctly too
+                    containerColor = colors.primaryContainer,
+                    contentColor = colors.onPrimaryContainer,
                 )
             ) {
                 Text(
-                    text = stringResource(id = R.string.landing_button_text)
+                    text = stringResource(id = R.string.landing_button_text),
+                    style = typography.labelLarge
+                )
+            }
+            Spacer(
+                modifier = Modifier
+                    .height(20.dp)
+            )
+            Text(
+                text = stringResource(id = R.string.landing_redirect_text),
+                style = typography.bodySmall,
+                color = colors.onBackground
+            )
+            Button(
+                onClick = { navController.navigate("Login") },
+                border = BorderStroke(1.dp,colors.primary),
+                colors = ButtonDefaults.outlinedButtonColors(
+                    containerColor = Color.Transparent,
+                    contentColor = colors.onPrimaryContainer
+                )
+            ) {
+                Text(
+                    text = stringResource(id = R.string.lading_redirect_button_text),
+                    style = typography.labelLarge
                 )
             }
         }
     }
 }
-
 @Preview(name = "Light Mode")
 @Composable
 fun LandingScreenPreview() {
-    PawsomePetCareTheme (darkTheme = false) {
-        LandingScreen()
+    // Providing a default NavController as preview cannot use a real one
+    val navController = rememberNavController()
+
+    PawsomePetCareTheme {
+        LandingScreen(navController = navController)
     }
 }

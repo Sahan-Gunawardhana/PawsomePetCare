@@ -3,5 +3,14 @@
     <string name="landing_title_1">Discover the best for your furry friends at PawSome!</string>
     <string name="landing_title_2">Find and shop for the best pet supplies from the comfort of your home</string>
     <string name="landing_button_text">Let\'s Get Started</string>
-    <string name="landing_redirect">Already have an account?</string>
+    <string name="landing_redirect_text">Already have an account?</string>
+    <string name="lading_redirect_button_text">Log In</string>
+    <string name="login_in_title">Log In</string>
+    <string name="login_name_text_field">John Doe</string>
+    <string name="login_password_text_field">Password</string>
+    <string name="login_button_text">Log In</string>
+    <string name="login_redirect_to_sign_up">Dont\'have an account?</string>
+    <string name="login_redirect_to_sign_clickable_text"> Register</string>
+    <string name="login_user_name_desc">User name</string>
+    <string name="login_password_desc">Password</string>
 </resources>
