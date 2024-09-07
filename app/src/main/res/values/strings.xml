@@ -14,5 +14,8 @@
     <string name="login_redirect_to_sign_clickable_text"> Register</string>
     <string name="login_user_name_desc">User name</string>
     <string name="login_password_desc">Password</string>
-
+    //Home page
+    <string name="home_greeting">Hello, John!</string>
+    <string name="home_greeting_two">Welcome to PawSome Pet Care</string>
+    <string name="home_search">Search for pet supplies</string>
 </resources>

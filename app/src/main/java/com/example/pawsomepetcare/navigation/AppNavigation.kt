@@ -15,6 +15,7 @@ import com.example.pawsomepetcare.components.BottomNavBar
 import com.example.pawsomepetcare.components.LoadingAnimation
 import com.example.pawsomepetcare.components.TopBarSettings
 import com.example.pawsomepetcare.components.TopBarSettingsWithBack
+import com.example.pawsomepetcare.components.TopBarSettingsWithGreeting
 import com.example.pawsomepetcare.screens.HomeScreen
 import com.example.pawsomepetcare.screens.LandingScreen
 import com.example.pawsomepetcare.screens.LoginScreen
@@ -47,13 +48,16 @@ fun AppNavigation(modifier: Modifier = Modifier) {
         }
     }
 
+    fun shouldShowTopBarWithGreeting(route:String?): Boolean{
+        return route == Screens.HomeScreen.route
+    }
+
+
     fun shouldShowTopBarSettings(route: String?): Boolean {
         return when (route) {
-            Screens.HomeScreen.route,
             Screens.ServicesScreen.route,
             Screens.CartScreen.route,
             Screens.ProfileScreen.route -> true
-
             else -> false
         }
     }
@@ -74,6 +78,12 @@ fun AppNavigation(modifier: Modifier = Modifier) {
                         TopBarSettingsWithBack(
                             onBackArrowClick = { navController.navigate(Screens.HomeScreen.route) },
                             onSettingsClick = { /* Handle settings click */ }
+                        )
+                    }
+
+                    shouldShowTopBarWithGreeting(route) ->{
+                        TopBarSettingsWithGreeting (
+                            onSettingsClick = { /*handle sthe click */}
                         )
                     }
 
