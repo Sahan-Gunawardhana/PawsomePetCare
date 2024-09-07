@@ -7,5 +7,9 @@ enum class Screens(val route: String) {
     ProfileScreen("ProfileScreen"),
     LandingScreen("LandingScreen"),
     LoginScreen("LoginScreen"),
-    SignUpScreen("SignUpScreen")
+    SignUpScreen("SignUpScreen"),
+    ProductScreen("ProductScreen"),
+    FavouritesScreen("FavouritesScreen"),
+    CheckOutScreen("CheckOutScreen")
+
 }

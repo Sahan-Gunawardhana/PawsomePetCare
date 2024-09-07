@@ -1,4 +1,5 @@
 <resources>
+    //login and signup
     <string name="app_name">PawsomePetCare</string>
     <string name="landing_title_1">Discover the best for your furry friends at PawSome!</string>
     <string name="landing_title_2">Find and shop for the best pet supplies from the comfort of your home</string>
@@ -13,4 +14,5 @@
     <string name="login_redirect_to_sign_clickable_text"> Register</string>
     <string name="login_user_name_desc">User name</string>
     <string name="login_password_desc">Password</string>
+
 </resources>

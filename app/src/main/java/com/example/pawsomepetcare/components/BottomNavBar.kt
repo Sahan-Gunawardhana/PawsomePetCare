@@ -2,14 +2,12 @@ package com.example.pawsomepetcare.components
 
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.MaterialTheme.typography
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
-import androidx.compose.material3.NavigationBarItemColors
-import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
@@ -18,7 +16,6 @@ import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.example.pawsomepetcare.navigation.Screens
 import com.example.pawsomepetcare.ui.theme.PawsomePetCareTheme
 
 @Composable
@@ -54,21 +51,17 @@ fun BottomNavBar(navController: NavController) {
                     Icon(
                         imageVector = icon,
                         contentDescription = null,
-                        tint = if (currentRoute == navItem.route) Color.Black else Color.White
+                        tint = if (currentRoute == navItem.route) colors.onSecondaryContainer else Color.White
                     )
                 },
                 label = {
                     Text(
                         text = navItem.label,
-                        color = if (currentDestination?.route == navItem.route) Color.Black else Color.White
+                        color = if (currentDestination?.route == navItem.route) colors.onSecondaryContainer else Color.White,
+                        style = typography.labelLarge
                     )
                 },
-                colors = NavigationBarItemDefaults.colors(
-                    selectedIconColor = colors.primary,
-                    unselectedIconColor = colors.onSecondaryContainer.copy(alpha = 0.6f), // Optional: Adjust alpha for better visibility
-                    selectedTextColor = colors.primary,
-                    unselectedTextColor = colors.onSecondaryContainer.copy(alpha = 0.6f),
-                )
+
             )
         }
     }
