@@ -32,6 +32,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.pawsomepetcare.R
+import com.example.pawsomepetcare.navigation.Screens
 import com.example.pawsomepetcare.ui.theme.PawsomePetCareTheme
 
 @Composable
@@ -104,7 +105,7 @@ fun LandingScreen(navController:NavController,modifier: Modifier = Modifier) {
                 .height(16.dp)
             )
             Button(
-                onClick = { navController.navigate("SignUp")},
+                onClick = { navController.navigate(Screens.SignUpScreen.name)},
                 elevation = ButtonDefaults.buttonElevation(
                     defaultElevation = 8.dp,
                     pressedElevation = 8.dp,
@@ -130,7 +131,7 @@ fun LandingScreen(navController:NavController,modifier: Modifier = Modifier) {
                 color = colors.onBackground
             )
             Button(
-                onClick = { navController.navigate("Login") },
+                onClick = { navController.navigate(Screens.LoginScreen.name) },
                 border = BorderStroke(1.dp,colors.primary),
                 colors = ButtonDefaults.outlinedButtonColors(
                     containerColor = Color.Transparent,

@@ -8,6 +8,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -50,6 +51,7 @@ import androidx.navigation.NavController
 
 import androidx.navigation.compose.rememberNavController
 import com.example.pawsomepetcare.R
+import com.example.pawsomepetcare.navigation.Screens
 import com.example.pawsomepetcare.ui.theme.PawsomePetCareTheme
 
 @Composable
@@ -98,7 +100,7 @@ fun LoginScreen(navController: NavController, modifier: Modifier = Modifier) {
         }
         Box(
             modifier = Modifier
-                .offset(y = (-90).dp) // Move 100 dp up
+                .offset(y = (-100).dp) // Move 100 dp up
                 .background(colors.background, shape = shapes.small)
                 .border(
                     BorderStroke(0.2.dp, colors.primary),
@@ -106,7 +108,7 @@ fun LoginScreen(navController: NavController, modifier: Modifier = Modifier) {
                 )
                 .padding(16.dp)
                 .widthIn(max = 300.dp)
-                .height(300.dp)
+                .height(260.dp)
                 .align(Alignment.CenterHorizontally),
 
         ) {
@@ -115,6 +117,7 @@ fun LoginScreen(navController: NavController, modifier: Modifier = Modifier) {
                 verticalArrangement = Arrangement.Center,
                 modifier = Modifier
                     .fillMaxSize()
+                    .height(IntrinsicSize.Min)
 
             ) {
                 Text(
@@ -171,7 +174,7 @@ fun LoginScreen(navController: NavController, modifier: Modifier = Modifier) {
                 )
                 Spacer(modifier = Modifier.height(16.dp))
                 Button(
-                    onClick = { navController.navigate("Home") },
+                    onClick = { navController.navigate(Screens.HomeScreen.name) },
                     elevation = ButtonDefaults.buttonElevation(
                                 defaultElevation = 8.dp,
                                 focusedElevation = 8.dp,
@@ -190,10 +193,11 @@ fun LoginScreen(navController: NavController, modifier: Modifier = Modifier) {
             }
 
         }
-        Spacer(modifier = Modifier.height(20.dp))
+        Spacer(modifier = Modifier.height(10.dp))
         Row(
             modifier = Modifier
-                .fillMaxWidth(),
+                .fillMaxWidth()
+            ,
             horizontalArrangement = Arrangement.Center
         ) {
             Text(
