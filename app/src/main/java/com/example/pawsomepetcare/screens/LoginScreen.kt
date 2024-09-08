@@ -185,7 +185,6 @@ fun LoginScreen(navController: NavController, modifier: Modifier = Modifier) {
                 ) {
                     Text(
                         text = stringResource(R.string.login_button_text),
-                        style = typography.labelLarge
                     )
                 }
             }

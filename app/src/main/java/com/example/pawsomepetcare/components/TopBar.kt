@@ -33,7 +33,7 @@ import com.example.pawsomepetcare.ui.theme.PawsomePetCareTheme
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopBarSettings(
-    onSettingsClick:() -> Unit,
+    onSettingsClick:() -> Unit, //settings icon should move to right 8.dp
 ){
     val colors = MaterialTheme.colorScheme
    TopAppBar(
@@ -70,18 +70,17 @@ fun TopBarSettingsWithGreeting(
     ) {
         Column(
             modifier = Modifier
-                .padding(start = 16.dp, top = 36.dp)
+                .padding(start = 8.dp, top = 45.dp)
         ) {
             Text(
                 text = stringResource(R.string.home_greeting),
                 style = typography.titleLarge,
-                fontWeight = FontWeight(700),
+                fontWeight = FontWeight(600),
                 color = colors.onBackground
             )
             Text(
                 text = stringResource(R.string.home_greeting_two),
                 style = typography.titleLarge,
-                fontWeight = FontWeight(700),
                 color = colors.onBackground
             )
         }

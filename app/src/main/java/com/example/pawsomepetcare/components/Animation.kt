@@ -20,12 +20,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
-
 @Composable
 fun LoadingAnimation(){
     val progress = remember { Animatable(0f) }
 
-    LaunchedEffect(Unit) {
+    LaunchedEffect(progress) {
         progress.animateTo(
             targetValue = 1f,
             animationSpec = tween(durationMillis = 2000)
@@ -44,7 +43,7 @@ fun LoadingAnimation(){
             )
             Spacer(modifier = Modifier.height(16.dp))
             LinearProgressIndicator(
-                progress = { progress.value },
+                progress = progress.value,
                 modifier = Modifier
                     .fillMaxWidth(0.8f)
                     .height(8.dp)

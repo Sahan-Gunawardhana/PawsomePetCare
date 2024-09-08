@@ -10,7 +10,7 @@
     <string name="login_name_text_field">John Doe</string>
     <string name="login_password_text_field">Password</string>
     <string name="login_button_text">Log In</string>
-    <string name="login_redirect_to_sign_up">Dont\'have an account?</string>
+    <string name="login_redirect_to_sign_up">Don\'t have an account?</string>
     <string name="login_redirect_to_sign_clickable_text"> Register</string>
     <string name="login_user_name_desc">User name</string>
     <string name="login_password_desc">Password</string>
@@ -18,4 +18,32 @@
     <string name="home_greeting">Hello, John!</string>
     <string name="home_greeting_two">Welcome to PawSome Pet Care</string>
     <string name="home_search">Search for pet supplies</string>
+    <string name="featured">Today\'s Picks</string>
+    <string name="product_1">Premium Dog Food</string>
+    <string name="product_1_price">$15.00</string>
+    <string name="product_2">Premium Cat Food</string>
+    <string name="product_2_price">$24.00</string>
+    <string name="product_3">Puppy Treats</string>
+    <string name="product_3_price">$16.00</string>
+    <string name="product_4">Tug Toy</string>
+    <string name="product_4_price">$10.00</string>
+    <string name="product_5">Kibble</string>
+    <string name="product_5_price">$20.00</string>
+    <string name="product_6">Cat Kibble</string>
+    <string name="product_6_price">$15.00</string>
+    <string name="product_1_description">Nutritious meals for a happy, healthy dog.</string>
+    <string name="product_2_description">Tailored nutrition to satisfy your cat’s cravings.</string>
+    <string name="product_3_description">Delicious rewards for your growing pup.</string>
+    <string name="product_4_description">Perfect for playful tug-of-war with your pet.</string>
+    <string name="product_5_description">Balanced, crunchy kibble for daily feeding.</string>
+    <string name="product_6_description">Crunchy bites your cat will love, every day.</string>
+
+    //Profile order history
+    <string name="order_number_label">Order Number</string>
+    <string name="date_label">Date</string>
+    <string name="total_label">Total</string>
+    <string name="arrival_date_label">Arrival Date</string>
+    <string name="quantity_label">Quantity</string>
+    <string name="price_label">Price</string>
+
 </resources>
