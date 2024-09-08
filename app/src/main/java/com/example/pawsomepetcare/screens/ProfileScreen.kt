@@ -43,14 +43,14 @@ fun ProfileScreen(navController: NavController, modifier: Modifier = Modifier) {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp) // Adjust padding as needed
+            .padding(16.dp)
     ) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState())
         ) {
-            // Profile Information
+
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -71,8 +71,8 @@ fun ProfileScreen(navController: NavController, modifier: Modifier = Modifier) {
                     modifier = Modifier
                         .height(200.dp)
                         .fillMaxWidth()
-                        .clip(shape = MaterialTheme.shapes.small) // Apply rounded corners to the Box
-                        .background(color = colors.tertiaryContainer) // Apply background color to the Box
+                        .clip(shape = MaterialTheme.shapes.small)
+                        .background(color = colors.tertiaryContainer)
                         .padding(32.dp)
                 ) {
                     Column(

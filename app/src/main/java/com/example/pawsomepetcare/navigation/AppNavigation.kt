@@ -12,6 +12,7 @@ import com.example.pawsomepetcare.components.BottomNavBar
 import com.example.pawsomepetcare.components.TopBarSettings
 import com.example.pawsomepetcare.components.TopBarSettingsWithBack
 import com.example.pawsomepetcare.components.TopBarSettingsWithGreeting
+import com.example.pawsomepetcare.screens.CartScreen
 import com.example.pawsomepetcare.screens.HomeScreen
 import com.example.pawsomepetcare.screens.LandingScreen
 import com.example.pawsomepetcare.screens.LoginScreen
@@ -56,8 +57,13 @@ fun AppNavigation(modifier: Modifier = Modifier) {
     }
 
     Scaffold(
+
         topBar = {
             val route = navController.currentBackStackEntryAsState().value?.destination?.route
+            val screenName = Screens.values()
+                .find { it.route == route }
+                ?.name
+                ?.replace("Screen", "") ?: ""
 
             when {
                 shouldShowTopBarWithBack(route) -> {
@@ -75,10 +81,10 @@ fun AppNavigation(modifier: Modifier = Modifier) {
 
                 shouldShowTopBarSettings(route) -> {
                     TopBarSettings(
+                        title = screenName,
                         onSettingsClick = { /* Handle settings click */ }
                     )
                 }
-
                 else -> null
             }
         },
@@ -90,7 +96,7 @@ fun AppNavigation(modifier: Modifier = Modifier) {
     ) { paddingValues ->
         NavHost(
             navController = navController,
-            startDestination = Screens.ProfileScreen.route,
+            startDestination = Screens.LandingScreen.route,
             modifier = Modifier
                 .padding(paddingValues)
         ) {
@@ -107,10 +113,9 @@ fun AppNavigation(modifier: Modifier = Modifier) {
                 SignUpScreen(navController)
             }
             composable(route = Screens.ServicesScreen.route) {
-
             }
             composable(route = Screens.CartScreen.route) {
-
+                CartScreen(navController)
             }
             composable(route = Screens.ProfileScreen.route) {
                 ProfileScreen(navController)

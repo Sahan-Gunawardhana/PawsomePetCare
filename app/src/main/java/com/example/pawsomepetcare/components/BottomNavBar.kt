@@ -74,6 +74,6 @@ fun BottomNavBar(navController: NavController) {
 @Preview@Composable
 fun BottomNavBarPreview() {
     PawsomePetCareTheme {
-        BottomNavBar(navController = rememberNavController()) // Use a dummy NavController
+        BottomNavBar(navController = rememberNavController())
     }
 }

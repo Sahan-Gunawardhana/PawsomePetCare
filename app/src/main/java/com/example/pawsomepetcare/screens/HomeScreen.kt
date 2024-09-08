@@ -7,12 +7,18 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Pets
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.MaterialTheme.typography
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -33,6 +39,7 @@ import com.example.pawsomepetcare.ui.theme.PawsomePetCareTheme
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(navController: NavController, modifier: Modifier = Modifier){
+    val colors = MaterialTheme.colorScheme
     val products = DataSource().loadPicturesToHome()
     Column(
         modifier = Modifier
@@ -41,7 +48,6 @@ fun HomeScreen(navController: NavController, modifier: Modifier = Modifier){
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Spacer(modifier = Modifier.height(15.dp))
         SearchBar()
         Spacer(modifier = Modifier.height(15.dp))
         Text(
@@ -49,40 +55,103 @@ fun HomeScreen(navController: NavController, modifier: Modifier = Modifier){
             textAlign = TextAlign.Left,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(start = 8.dp,bottom = 6.dp),
+                .padding(start = 8.dp, bottom = 6.dp),
             style = typography.headlineSmall,
         )
-        LazyRow {
+        LazyRow (){
             items(products) { product ->
                 ProductCard(product, navController)
             }
         }
-        Spacer(modifier = Modifier.height(15.dp))
-        Column {
+        Column(
+
+        ) {
             Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceAround
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp),
+                horizontalArrangement = Arrangement.SpaceEvenly
             ) {
-                Button(onClick = { /*TODO*/ }) {
-                    Text(text = "Dog Supplies")
+                Button(
+                    onClick = { /*TODO*/ },
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = colors.primaryContainer,
+                        contentColor = colors.onPrimaryContainer
+                    ),
+                    elevation = ButtonDefaults.buttonElevation(
+                        focusedElevation = 8.dp,
+                        defaultElevation = 8.dp
+                    ),
+                    modifier = Modifier
+                        .weight(1f)
+                        .padding(horizontal = 4.dp)
+                ) {
+                    Icon(imageVector = Icons.Outlined.Pets, contentDescription = null, modifier = Modifier.size(24.dp))
+                    Text(text = "Dog Supplies", modifier = Modifier.padding(start = 8.dp))
                 }
-                Button(onClick = { /*TODO*/ }) {
-                    Text(text = "Cat Supplies")
+                Button(
+                    onClick = { /*TODO*/ },
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = colors.primaryContainer,
+                        contentColor = colors.onPrimaryContainer
+                    ),
+                    elevation = ButtonDefaults.buttonElevation(
+                        focusedElevation = 8.dp,
+                        defaultElevation = 8.dp
+                    ),
+                    modifier = Modifier
+                        .weight(1f)
+                        .padding(horizontal = 4.dp)
+                ) {
+                    Icon(imageVector = Icons.Outlined.Pets, contentDescription = null, modifier = Modifier.size(24.dp))
+                    Text(text = "Cat Supplies", modifier = Modifier.padding(start = 8.dp))
                 }
             }
             Spacer(modifier = Modifier.height(8.dp)) // Add spacing between rows of buttons
             Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceAround
-            ){
-                Button(onClick = { /*TODO*/ }) {
-                    Text(text = "Bird Supplies")
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp),
+                horizontalArrangement = Arrangement.SpaceEvenly
+            ) {
+                Button(
+                    onClick = { /*TODO*/ },
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = colors.primaryContainer,
+                        contentColor = colors.onPrimaryContainer
+                    ),
+                    elevation = ButtonDefaults.buttonElevation(
+                        focusedElevation = 8.dp,
+                        defaultElevation = 8.dp
+                    ),
+                    modifier = Modifier
+                        .weight(1f)
+                        .padding(horizontal = 4.dp)
+                ) {
+                    Icon(imageVector = Icons.Outlined.Pets, contentDescription = null, modifier = Modifier.size(24.dp))
+                    Text(text = "Bird Supplies", modifier = Modifier.padding(start = 8.dp))
                 }
-                Button(onClick = { /*TODO*/ }) {
-                    Text(text = "Fish Supplies")
+                Button(
+                    onClick = { /*TODO*/ },
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = colors.primaryContainer,
+                        contentColor = colors.onPrimaryContainer
+                    ),
+                    elevation = ButtonDefaults.buttonElevation(
+                        focusedElevation = 8.dp,
+                        defaultElevation = 8.dp
+                    ),
+                    modifier = Modifier
+                        .weight(1f)
+                        .padding(horizontal = 4.dp)
+                ) {
+                    Icon(imageVector = Icons.Outlined.Pets, contentDescription = null, modifier = Modifier.size(24.dp))
+                    Text(text = "Fish Supplies", modifier = Modifier.padding(start = 8.dp))
                 }
             }
         }
+
+        Spacer(modifier = Modifier.height(40.dp))
     }
 }
 
