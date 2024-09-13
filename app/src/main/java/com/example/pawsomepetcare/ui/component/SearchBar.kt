@@ -1,4 +1,4 @@
-package com.example.pawsomepetcare.components
+package com.example.pawsomepetcare.ui.component
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height

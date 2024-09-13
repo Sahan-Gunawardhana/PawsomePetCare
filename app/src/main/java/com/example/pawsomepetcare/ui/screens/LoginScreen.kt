@@ -1,4 +1,4 @@
-package com.example.pawsomepetcare.screens
+package com.example.pawsomepetcare.ui.screens
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -49,7 +49,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.pawsomepetcare.R
-import com.example.pawsomepetcare.navigation.Screens
+import com.example.pawsomepetcare.ui.navigation.Screens
 import com.example.pawsomepetcare.ui.theme.PawsomePetCareTheme
 
 @Composable
@@ -106,20 +106,20 @@ fun LoginScreen(navController: NavController, modifier: Modifier = Modifier) {
                 )
                 .padding(16.dp)
                 .widthIn(max = 300.dp)
-                .height(260.dp)
+                .height(intrinsicSize = IntrinsicSize.Min)
                 .align(Alignment.CenterHorizontally),
 
         ) {
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center,
+                verticalArrangement = Arrangement.Top,
                 modifier = Modifier
                     .fillMaxSize()
                     .height(IntrinsicSize.Min)
 
             ) {
                 Text(
-                    text = stringResource(id = R.string.login_in_title),
+                    text = stringResource(id = R.string.login_title),
                     style = typography.titleLarge,
                     color = colors.onBackground
                 )

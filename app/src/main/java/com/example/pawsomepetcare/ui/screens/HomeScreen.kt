@@ -1,4 +1,4 @@
-package com.example.pawsomepetcare.screens
+package com.example.pawsomepetcare.ui.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -31,9 +31,9 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.pawsomepetcare.R
-import com.example.pawsomepetcare.components.ProductCard
-import com.example.pawsomepetcare.components.SearchBar
 import com.example.pawsomepetcare.data.DataSource
+import com.example.pawsomepetcare.ui.component.ProductCard
+import com.example.pawsomepetcare.ui.component.SearchBar
 import com.example.pawsomepetcare.ui.theme.PawsomePetCareTheme
 
 @OptIn(ExperimentalMaterial3Api::class)

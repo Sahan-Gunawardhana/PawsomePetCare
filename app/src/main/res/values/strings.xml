@@ -1,19 +1,36 @@
 <resources>
-    //login and signup
+    //login
     <string name="app_name">PawsomePetCare</string>
     <string name="landing_title_1">Discover the best for your furry friends at PawSome!</string>
     <string name="landing_title_2">Find and shop for the best pet supplies from the comfort of your home</string>
     <string name="landing_button_text">Let\'s Get Started</string>
     <string name="landing_redirect_text">Already have an account?</string>
     <string name="lading_redirect_button_text">Log In</string>
-    <string name="login_in_title">Log In</string>
-    <string name="login_name_text_field">John Doe</string>
+    <string name="login_title">Log In</string>
+    <string name="login_name_text_field">JohnDoe</string>
     <string name="login_password_text_field">Password</string>
     <string name="login_button_text">Log In</string>
     <string name="login_redirect_to_sign_up">Don\'t have an account?</string>
     <string name="login_redirect_to_sign_clickable_text"> Register</string>
     <string name="login_user_name_desc">User name</string>
     <string name="login_password_desc">Password</string>
+    //signup
+    <string name="signup_title">Sign Up</string>
+    <string name="signup_name_text_field">Name</string>
+    <string name="signup_user_name_text_field">Username</string>
+    <string name="signup_password_text_field">Password</string>
+    <string name="signup_email">E-mail</string>
+    <string name="signup_tele">Telephone</string>
+    <string name="signup_dOb">Date of birth</string>
+    <string name="signup_button_text">Sign Up</string>
+    <string name="signup_redirect_to_sign_up">Already have an account?</string>
+    <string name="signup_redirect_to_sign_clickable_text">Log In</string>
+    <string name="signup_name_desc">name</string>
+    <string name="signup_user_name_desc">User name</string>
+    <string name="signup_password_desc">Password</string>
+    <string name="signup_tele_desc">Password</string>
+    <string name="signup_email_desc">E-mail</string>
+
     //Home page
     <string name="home_greeting">Hello, John!</string>
     <string name="home_greeting_two">Welcome to PawSome Pet Care</string>

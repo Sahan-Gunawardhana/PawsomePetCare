@@ -1,4 +1,4 @@
-package com.example.pawsomepetcare.navigation
+package com.example.pawsomepetcare.ui.navigation
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
@@ -8,16 +8,16 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.example.pawsomepetcare.components.BottomNavBar
-import com.example.pawsomepetcare.components.TopBarSettings
-import com.example.pawsomepetcare.components.TopBarSettingsWithBack
-import com.example.pawsomepetcare.components.TopBarSettingsWithGreeting
-import com.example.pawsomepetcare.screens.CartScreen
-import com.example.pawsomepetcare.screens.HomeScreen
-import com.example.pawsomepetcare.screens.LandingScreen
-import com.example.pawsomepetcare.screens.LoginScreen
-import com.example.pawsomepetcare.screens.ProfileScreen
-import com.example.pawsomepetcare.screens.SignUpScreen
+import com.example.pawsomepetcare.ui.component.BottomNavBar
+import com.example.pawsomepetcare.ui.component.TopBarSettings
+import com.example.pawsomepetcare.ui.component.TopBarSettingsWithBack
+import com.example.pawsomepetcare.ui.component.TopBarSettingsWithGreeting
+import com.example.pawsomepetcare.ui.screens.CartScreen
+import com.example.pawsomepetcare.ui.screens.HomeScreen
+import com.example.pawsomepetcare.ui.screens.LandingScreen
+import com.example.pawsomepetcare.ui.screens.LoginScreen
+import com.example.pawsomepetcare.ui.screens.ProfileScreen
+import com.example.pawsomepetcare.ui.screens.SignUpScreen
 
 
 @Composable
@@ -57,10 +57,9 @@ fun AppNavigation(modifier: Modifier = Modifier) {
     }
 
     Scaffold(
-
         topBar = {
             val route = navController.currentBackStackEntryAsState().value?.destination?.route
-            val screenName = Screens.values()
+            val screenName = Screens.entries
                 .find { it.route == route }
                 ?.name
                 ?.replace("Screen", "") ?: ""

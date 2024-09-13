@@ -1,4 +1,4 @@
-package com.example.pawsomepetcare.screens
+package com.example.pawsomepetcare.ui.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -14,12 +14,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.FloatingActionButton
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -35,6 +31,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.pawsomepetcare.R
+import com.example.pawsomepetcare.ui.component.ExtendedFloatingActionButtonCommon
 import com.example.pawsomepetcare.ui.theme.PawsomePetCareTheme
 
 @Composable
@@ -118,22 +115,7 @@ fun ProfileScreen(navController: NavController, modifier: Modifier = Modifier) {
                         }
                     }
                 }
-                Spacer(modifier = Modifier.height(10.dp))
-                Button(
-                    onClick = { /*TODO*/ },
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = colors.errorContainer,
-                        contentColor = colors.onErrorContainer
-                    ),
-                    elevation = ButtonDefaults.buttonElevation(
-                        focusedElevation = 8.dp,
-                        defaultElevation = 8.dp,
-                        pressedElevation = 8.dp,
-                        hoveredElevation = 8.dp
-                    )
-                ) {
-                    Text(text = "Log Out")
-                }
+
             }
             Spacer(modifier = Modifier.height(10.dp))
             Text(
@@ -154,12 +136,14 @@ fun ProfileScreen(navController: NavController, modifier: Modifier = Modifier) {
                         .clip(shape = MaterialTheme.shapes.small) // Apply rounded corners to the Box
                         .background(color = colors.tertiaryContainer)
                 ) {
-                    Column {
+                    Column(
+                        modifier = Modifier.padding(32.dp)
+                    ) {
                         Row(
                             horizontalArrangement = Arrangement.SpaceBetween,
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(start = 32.dp, top = 8.dp, bottom = 8.dp, end = 32.dp)
+                                .padding(bottom = 8.dp)
                         ) {
                             Text(text = "Appointment", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold, textDecoration = TextDecoration.Underline)
                             Text(text = "2024/01/23", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold, textDecoration = TextDecoration.Underline)
@@ -168,7 +152,7 @@ fun ProfileScreen(navController: NavController, modifier: Modifier = Modifier) {
                             horizontalArrangement = Arrangement.SpaceBetween,
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(start = 32.dp, top = 8.dp, bottom = 8.dp, end = 32.dp)
+                                .padding(bottom = 8.dp)
                         ) {
                             Text(text = "From")
                             Text(text = "2024/01/25")
@@ -177,7 +161,7 @@ fun ProfileScreen(navController: NavController, modifier: Modifier = Modifier) {
                             horizontalArrangement = Arrangement.SpaceBetween,
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(start = 32.dp, top = 8.dp, bottom = 8.dp, end = 32.dp)
+                                .padding(bottom = 8.dp)
                         ) {
                             Text(text = "Till")
                             Text(text = "2024/01/30")
@@ -186,7 +170,7 @@ fun ProfileScreen(navController: NavController, modifier: Modifier = Modifier) {
                             onClick = { /*TODO*/ },
                             modifier = Modifier
                                 .align(Alignment.End)
-                                .padding(end = 32.dp, bottom = 8.dp),
+                                .padding(bottom = 0.dp),
                             colors = ButtonDefaults.buttonColors(
                                 containerColor = colors.errorContainer,
                                 contentColor = colors.onErrorContainer
@@ -222,12 +206,14 @@ fun ProfileScreen(navController: NavController, modifier: Modifier = Modifier) {
                         .clip(shape = MaterialTheme.shapes.small)
                         .background(color = colors.tertiaryContainer)
                 ) {
-                    Column {
+                    Column(
+                        modifier = Modifier.padding(32.dp)
+                    ) {
                         Row(
                             horizontalArrangement = Arrangement.SpaceBetween,
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(start = 32.dp, top = 8.dp, bottom = 8.dp, end = 32.dp)
+                                .padding(bottom = 8.dp)
                         ) {
                             Text(text = "Order #12341", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold, textDecoration = TextDecoration.Underline)
                             Text(text = "2024/01/23", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold, textDecoration = TextDecoration.Underline)
@@ -236,7 +222,7 @@ fun ProfileScreen(navController: NavController, modifier: Modifier = Modifier) {
                             horizontalArrangement = Arrangement.SpaceBetween,
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(start = 32.dp, top = 8.dp, bottom = 8.dp, end = 32.dp)
+                                .padding(bottom = 8.dp)
                         ) {
                             Text(text = "Total")
                             Text(text = "$123.00")
@@ -245,7 +231,7 @@ fun ProfileScreen(navController: NavController, modifier: Modifier = Modifier) {
                             horizontalArrangement = Arrangement.SpaceBetween,
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(start = 32.dp, top = 8.dp, bottom = 8.dp, end = 32.dp)
+                                .padding(bottom = 8.dp)
                         ) {
                             Text(text = "Arrival")
                             Text(text = "2024/01/30")
@@ -255,22 +241,10 @@ fun ProfileScreen(navController: NavController, modifier: Modifier = Modifier) {
             }
             Spacer(modifier = Modifier.height(70.dp))
         }
-        FloatingActionButton(
-            onClick = {
-
-            },
-            containerColor = colors.primaryContainer,
-            contentColor = colors.onPrimaryContainer,
-            modifier = Modifier
-                .align(Alignment.BottomEnd)
-                .padding(16.dp)
-        ) {
-            Icon(Icons.Default.Edit, contentDescription = "Edit Profile")
-        }
+        ExtendedFloatingActionButtonCommon(title = "Edit Your Profle", onClick = { /*TODO*/ }, modifier = Modifier.align(Alignment.BottomEnd).padding(end = 8.dp))
         Spacer(modifier = Modifier.height(150.dp))
     }
 }
-
 
 @Preview(showBackground = true)
 @Composable

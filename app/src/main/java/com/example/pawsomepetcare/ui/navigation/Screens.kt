@@ -1,4 +1,4 @@
-package com.example.pawsomepetcare.navigation
+package com.example.pawsomepetcare.ui.navigation
 
 enum class Screens(val route: String) {
     HomeScreen("HomeScreen"),

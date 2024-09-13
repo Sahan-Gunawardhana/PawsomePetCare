@@ -1,4 +1,4 @@
-package com.example.pawsomepetcare.components
+package com.example.pawsomepetcare.ui.component
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row

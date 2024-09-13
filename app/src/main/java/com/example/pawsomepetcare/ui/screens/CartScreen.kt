@@ -1,22 +1,21 @@
-package com.example.pawsomepetcare.screens
+package com.example.pawsomepetcare.ui.screens
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -28,7 +27,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -84,10 +82,11 @@ fun CartScreen(navController: NavController, modifier: Modifier = Modifier) {
             quantity = "x5",
             onDeleteClick = { /*TODO*/ }
         )
-        Spacer(modifier = Modifier
-            .height(0.7.dp)
-            .background(color = Color.Black)
-            .fillMaxWidth())
+        HorizontalDivider(
+            color = colors.primary,
+            modifier = Modifier.fillMaxWidth(),
+            thickness = 1.dp
+        )
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -106,10 +105,10 @@ fun CartScreen(navController: NavController, modifier: Modifier = Modifier) {
             Text(text = "Shipping")
             Text(text = "$14.00")
         }
-        Spacer(modifier = Modifier
-            .height(1.dp)
-            .background(color = Color.Black)
-            .fillMaxWidth()
+        HorizontalDivider(
+            color = colors.error,
+            modifier = Modifier.fillMaxWidth(),
+            thickness = 2.dp
         )
         Row(
             modifier = Modifier
@@ -120,10 +119,10 @@ fun CartScreen(navController: NavController, modifier: Modifier = Modifier) {
             Text(text = "Total", style = typography.titleLarge)
             Text(text = "$224.00",style = typography.titleLarge)
         }
-        Spacer(modifier = Modifier
-            .height(1.dp)
-            .background(color = Color.Black)
-            .fillMaxWidth()
+        HorizontalDivider(
+            color = colors.primary,
+            thickness = 3.dp,
+            modifier = Modifier.fillMaxWidth()
         )
         Row(
             modifier = Modifier
@@ -194,14 +193,16 @@ fun CartItem(
             Text(text = itemPrice, style = MaterialTheme.typography.bodyMedium)
         }
         IconButton(onClick = onDeleteClick) {
-            Icon(imageVector = Icons.Outlined.Delete, contentDescription = null)
+            Icon(imageVector = Icons.Outlined.Delete, contentDescription = null, tint = colors.errorContainer)
         }
         Text(text = quantity, style = MaterialTheme.typography.bodyLarge)
     }
-    Spacer(modifier = Modifier
-        .height(0.2.dp)
-        .background(color = colors.onBackground)
-        .fillMaxWidth())
+    HorizontalDivider(
+        color = colors.primary,
+        modifier = Modifier
+            .fillMaxWidth()
+            .width(1.dp)
+    )
 }
 
 

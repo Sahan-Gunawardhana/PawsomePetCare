@@ -1,4 +1,4 @@
-package com.example.pawsomepetcare.components
+package com.example.pawsomepetcare.ui.component
 
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.tween

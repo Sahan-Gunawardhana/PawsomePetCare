@@ -50,6 +50,7 @@ android {
 }
 
 dependencies {
+    implementation ("androidx.compose.animation:animation:1.6.0-alpha04")
     implementation ("com.google.accompanist:accompanist-navigation-animation:0.30.1")
     implementation ("androidx.compose.animation:animation:1.6.0")
     implementation("androidx.navigation:navigation-compose:2.8.0")
@@ -64,6 +65,7 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.androidx.material.icons.extended)
     implementation(libs.androidx.runtime.livedata)
+    implementation(libs.androidx.compose.material)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
