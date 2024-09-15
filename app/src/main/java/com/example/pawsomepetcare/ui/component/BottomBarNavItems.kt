@@ -1,6 +1,6 @@
 package com.example.pawsomepetcare.ui.component
 
-import androidx.compose.material.icons.*
+import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CalendarToday
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
@@ -10,7 +10,7 @@ import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material.icons.outlined.ShoppingCart
 import androidx.compose.ui.graphics.vector.ImageVector
-import com.example.pawsomepetcare.ui.navigation.Screens
+import com.example.pawsomepetcare.navigation.Screens
 
 data class BottomBarNavItem(
 

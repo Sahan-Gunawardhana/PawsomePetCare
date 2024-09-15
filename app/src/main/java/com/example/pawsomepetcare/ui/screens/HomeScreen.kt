@@ -43,7 +43,8 @@ fun HomeScreen(navController: NavController, modifier: Modifier = Modifier){
     val products = DataSource().loadPicturesToHome()
     Column(
         modifier = Modifier
-            .padding(8.dp) // Apply padding to the entire column
+            .fillMaxWidth()
+            .padding(top = 0.dp, start = 16.dp, end = 16.dp, bottom = 16.dp ) // Apply padding to the entire column
             .verticalScroll(rememberScrollState()),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -55,7 +56,7 @@ fun HomeScreen(navController: NavController, modifier: Modifier = Modifier){
             textAlign = TextAlign.Left,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(start = 8.dp, bottom = 6.dp),
+                .padding(start = 0.dp, bottom = 6.dp),
             style = typography.headlineSmall,
         )
         LazyRow (){
@@ -64,12 +65,10 @@ fun HomeScreen(navController: NavController, modifier: Modifier = Modifier){
             }
         }
         Column(
-
         ) {
             Row(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 16.dp),
+                    .fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceEvenly
             ) {
                 Button(
@@ -84,7 +83,7 @@ fun HomeScreen(navController: NavController, modifier: Modifier = Modifier){
                     ),
                     modifier = Modifier
                         .weight(1f)
-                        .padding(horizontal = 4.dp)
+                        .padding(end = 4.dp)
                 ) {
                     Icon(imageVector = Icons.Outlined.Pets, contentDescription = null, modifier = Modifier.size(24.dp))
                     Text(text = "Dog Supplies", modifier = Modifier.padding(start = 8.dp))
@@ -101,7 +100,7 @@ fun HomeScreen(navController: NavController, modifier: Modifier = Modifier){
                     ),
                     modifier = Modifier
                         .weight(1f)
-                        .padding(horizontal = 4.dp)
+                        .padding(start = 4.dp)
                 ) {
                     Icon(imageVector = Icons.Outlined.Pets, contentDescription = null, modifier = Modifier.size(24.dp))
                     Text(text = "Cat Supplies", modifier = Modifier.padding(start = 8.dp))
@@ -110,8 +109,7 @@ fun HomeScreen(navController: NavController, modifier: Modifier = Modifier){
             Spacer(modifier = Modifier.height(8.dp)) // Add spacing between rows of buttons
             Row(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 16.dp),
+                    .fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceEvenly
             ) {
                 Button(
@@ -126,7 +124,7 @@ fun HomeScreen(navController: NavController, modifier: Modifier = Modifier){
                     ),
                     modifier = Modifier
                         .weight(1f)
-                        .padding(horizontal = 4.dp)
+                        .padding(end = 4.dp)
                 ) {
                     Icon(imageVector = Icons.Outlined.Pets, contentDescription = null, modifier = Modifier.size(24.dp))
                     Text(text = "Bird Supplies", modifier = Modifier.padding(start = 8.dp))
@@ -143,7 +141,7 @@ fun HomeScreen(navController: NavController, modifier: Modifier = Modifier){
                     ),
                     modifier = Modifier
                         .weight(1f)
-                        .padding(horizontal = 4.dp)
+                        .padding(start = 4.dp)
                 ) {
                     Icon(imageVector = Icons.Outlined.Pets, contentDescription = null, modifier = Modifier.size(24.dp))
                     Text(text = "Fish Supplies", modifier = Modifier.padding(start = 8.dp))

@@ -1,5 +1,6 @@
 package com.example.pawsomepetcare.ui.screens
 
+import DatePickerDocked
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -16,6 +17,7 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
@@ -41,14 +43,15 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.pawsomepetcare.R
-import com.example.pawsomepetcare.ui.component.DatePickerDocked
-import com.example.pawsomepetcare.ui.navigation.Screens
+import com.example.pawsomepetcare.navigation.Screens
 import com.example.pawsomepetcare.ui.theme.PawsomePetCareTheme
 
 
@@ -109,7 +112,7 @@ fun SignUpScreen(navController: NavHostController, modifier: Modifier = Modifier
         }
         Box(
             modifier = Modifier
-                .offset(y = (-100).dp) // Move 100 dp up
+                .offset(y = (-300).dp) // Move 100 dp up
                 .background(colors.background, shape = shapes.small)
                 .border(
                     BorderStroke(0.2.dp, colors.primary),
@@ -127,6 +130,7 @@ fun SignUpScreen(navController: NavHostController, modifier: Modifier = Modifier
                 modifier = Modifier
                     .fillMaxSize()
                     .height(IntrinsicSize.Min)
+                    .padding(10.dp)
             ) {
                 Text(
                     text = stringResource(id = R.string.signup_title),
@@ -194,7 +198,10 @@ fun SignUpScreen(navController: NavHostController, modifier: Modifier = Modifier
                             imageVector = Icons.Filled.Lock,
                             contentDescription = stringResource(R.string.signup_password_desc)
                         )
-                    },
+                    },keyboardOptions = KeyboardOptions.Default.copy(
+                        keyboardType = KeyboardType.Text,
+                        imeAction = ImeAction.Next
+                    ),
                     shape = shapes.small,
                     colors = TextFieldDefaults.colors(
                         focusedIndicatorColor = Color.Transparent, // Remove underline
@@ -220,7 +227,10 @@ fun SignUpScreen(navController: NavHostController, modifier: Modifier = Modifier
                             imageVector = Icons.Filled.Email,
                             contentDescription = stringResource(R.string.signup_email_desc)
                         )
-                    },
+                    },keyboardOptions = KeyboardOptions.Default.copy(
+                        keyboardType = KeyboardType.Email,
+                        imeAction = ImeAction.Done
+                    ),
                     shape = shapes.small,
                     colors = TextFieldDefaults.colors(
                         focusedIndicatorColor = Color.Transparent,
@@ -230,9 +240,9 @@ fun SignUpScreen(navController: NavHostController, modifier: Modifier = Modifier
                 )
                 Spacer(modifier = Modifier.height(16.dp))
                 TextField(
-                    value = username.value,
+                    value = tele.value,
                     onValueChange = {
-                        username.value = it
+                        tele.value = it
                     },
                     label = {
                         Text(text = stringResource(id = R.string.signup_tele))
@@ -253,7 +263,7 @@ fun SignUpScreen(navController: NavHostController, modifier: Modifier = Modifier
                 DatePickerDocked()
                 Spacer(modifier = Modifier.height(16.dp))
                 Button(
-                    onClick = { navController.navigate(Screens.HomeScreen.name) },
+                    onClick = { navController.navigate(Screens.LoginScreen.name) },
                     elevation = ButtonDefaults.buttonElevation(
                         defaultElevation = 8.dp,
                         focusedElevation = 8.dp,
@@ -265,12 +275,15 @@ fun SignUpScreen(navController: NavHostController, modifier: Modifier = Modifier
                     )
                 ) {
                     Text(
-                        text = stringResource(R.string.login_button_text),
+                        text = stringResource(R.string.signup_button_text),
                     )
                 }
+
             }
 
+
         }
+        Text(text = stringResource(id = R.string.signup_redirect_to_sign_up))
     }
 }
 

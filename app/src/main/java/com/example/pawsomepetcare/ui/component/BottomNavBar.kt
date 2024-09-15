@@ -66,7 +66,7 @@ fun BottomNavBar(navController: NavController) {
                     )
                 },
 
-            )
+                )
         }
     }
 }

@@ -34,7 +34,7 @@
     //Home page
     <string name="home_greeting">Hello, John!</string>
     <string name="home_greeting_two">Welcome to PawSome Pet Care</string>
-    <string name="home_search">Search for pet supplies</string>
+    <string name="home_search">Search for Pet Supplies</string>
     <string name="featured">Today\'s Picks</string>
     <string name="product_1">Premium Dog Food</string>
     <string name="product_1_price">$15.00</string>
@@ -54,6 +54,35 @@
     <string name="product_4_description">Perfect for playful tug-of-war with your pet.</string>
     <string name="product_5_description">Balanced, crunchy kibble for daily feeding.</string>
     <string name="product_6_description">Crunchy bites your cat will love, every day.</string>
+
+    //Services Page
+    <string name="services_title">Explore Our Services</string>
+    <string name="services_sub_title">Doggy Day Care</string>
+    <string name="services_sub_desc">Ensure you furry friend is well cared for in a safe and fun environment</string>
+    <string name="services_title_3">Loving Care</string>
+    <string name="services_title_3_desc">We treat your pets like our own, showering them with love and attention</string>
+    <string name="services_title_4">Tailored to Your Liking</string>
+    <string name="services_title_4_desc">Our services fit your lifestyle. Offering flexible care for your pet</string>
+    <string name="services_title_5">All Inclusive Pet Joy</string>
+    <string name="services_title_5_desc">Everything your pet needs for happiness, all in one place</string>
+    <string name="services_title_6">Effortless Peace of Mind</string>
+    <string name="services_title_6_desc">Relax with easy booking, knowing your pet is in loving, safe hands</string>
+    <string name="services_booking_title">Give the Care Your Pets Deserve While You\'re Away</string>
+    <string name="booking_petname">Enter Your Pets Name</string>
+    <string name="booking_petage">Enter Your Pets Age</string>
+    <string name="booking_petnotes">Additional Notes</string>
+    <string name="booking_drop">Drop-off Date</string>
+    <string name="booking_pick">Pick-up Date</string>
+    <string name="booking_button">Confirm</string>
+    //carousel desc
+    <string name="services_c_service_1">Dog in a doggy daycare sniffing the camera</string>
+    <string name="services_c_service_2">Dog in a doggy daycare sniffing the camera</string>
+    <string name="services_c_service_3">Dog in a doggy daycare sniffing the camera</string>
+    <string name="services_c_service_4">Dog in a doggy daycare sniffing the camera</string>
+    <string name="services_c_service_5">Dog in a doggy daycare sniffing the camera</string>
+    <string name="services_c_service_6">Dog in a doggy daycare sniffing the camera</string>
+
+
 
     //Profile order history
     <string name="order_number_label">Order Number</string>

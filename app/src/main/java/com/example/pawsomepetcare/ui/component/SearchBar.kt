@@ -1,8 +1,8 @@
+
 package com.example.pawsomepetcare.ui.component
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
@@ -50,7 +50,6 @@ fun SearchBar() {
         },
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 8.dp)
             .height(48.dp) // Adjust height to make it less enormous
             .clip(RoundedCornerShape(50)),
         singleLine = true,
@@ -64,3 +63,4 @@ fun SearchBar() {
         textStyle = typography.bodySmall.copy(color = colors.onBackground, fontSize = 14.sp)
     )
 }
+

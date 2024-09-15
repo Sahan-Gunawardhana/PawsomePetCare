@@ -50,8 +50,7 @@ fun ProfileScreen(navController: NavController, modifier: Modifier = Modifier) {
 
             Column(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(8.dp),
+                    .fillMaxWidth(),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Image(
@@ -70,7 +69,7 @@ fun ProfileScreen(navController: NavController, modifier: Modifier = Modifier) {
                         .fillMaxWidth()
                         .clip(shape = MaterialTheme.shapes.small)
                         .background(color = colors.tertiaryContainer)
-                        .padding(32.dp)
+                        .padding(16.dp)
                 ) {
                     Column(
                         modifier = Modifier
@@ -120,13 +119,11 @@ fun ProfileScreen(navController: NavController, modifier: Modifier = Modifier) {
             Spacer(modifier = Modifier.height(10.dp))
             Text(
                 text = "Ongoing Activities",
-                modifier = Modifier.padding(start = 8.dp),
                 style = MaterialTheme.typography.titleLarge
             )
             Column(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(8.dp),
+                    .fillMaxWidth(),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Box(
@@ -137,7 +134,7 @@ fun ProfileScreen(navController: NavController, modifier: Modifier = Modifier) {
                         .background(color = colors.tertiaryContainer)
                 ) {
                     Column(
-                        modifier = Modifier.padding(32.dp)
+                        modifier = Modifier.padding(16.dp)
                     ) {
                         Row(
                             horizontalArrangement = Arrangement.SpaceBetween,
@@ -191,12 +188,11 @@ fun ProfileScreen(navController: NavController, modifier: Modifier = Modifier) {
             Spacer(modifier = Modifier.height(8.dp))
 
             // Order History Section
-            Text(text = "Order History", modifier = Modifier.padding(start = 8.dp), style = MaterialTheme.typography.titleLarge)
+            Text(text = "Order History", style = MaterialTheme.typography.titleLarge)
 
             Column(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(8.dp),
+                    .fillMaxWidth(),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Box(
@@ -207,7 +203,7 @@ fun ProfileScreen(navController: NavController, modifier: Modifier = Modifier) {
                         .background(color = colors.tertiaryContainer)
                 ) {
                     Column(
-                        modifier = Modifier.padding(32.dp)
+                        modifier = Modifier.padding(16.dp)
                     ) {
                         Row(
                             horizontalArrangement = Arrangement.SpaceBetween,

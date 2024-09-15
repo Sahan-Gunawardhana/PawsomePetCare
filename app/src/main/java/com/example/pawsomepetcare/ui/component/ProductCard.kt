@@ -4,6 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -42,9 +43,9 @@ fun ProductCard(product: Product, navController: NavController) {
     Card(
         onClick = { /* Handle click */ },
         modifier = Modifier
-            .width(300.dp) // Fixed width
-            .height(320.dp) // Fixed height
-            .padding(8.dp),
+            .width(300.dp) 
+            .height(intrinsicSize = IntrinsicSize.Min)
+            .padding(start = 0.dp, end = 16.dp, top = 8.dp, bottom = 8.dp),
         colors = CardDefaults.cardColors(
             containerColor = Color.Transparent,
             contentColor = colors.onBackground,

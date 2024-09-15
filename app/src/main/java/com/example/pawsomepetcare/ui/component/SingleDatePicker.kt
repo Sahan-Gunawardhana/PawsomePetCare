@@ -1,7 +1,9 @@
-package com.example.pawsomepetcare.ui.component
 
-import android.icu.text.SimpleDateFormat
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.animation.core.spring
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -14,7 +16,6 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.MaterialTheme.shapes
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
@@ -30,7 +31,8 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Popup
-import java.sql.Date
+import java.text.SimpleDateFormat
+import java.util.Date
 import java.util.Locale
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -42,15 +44,22 @@ fun DatePickerDocked() {
         convertMillisToDate(it)
     } ?: ""
 
+    // Spring animation for showing and hiding the DatePicker
+    val offsetY by animateDpAsState(
+        targetValue = if (showDatePicker) 0.dp else (-300).dp,
+        animationSpec = spring(dampingRatio = Spring.DampingRatioMediumBouncy, stiffness = Spring.StiffnessMedium)
+    )
+
     Box(
         modifier = Modifier.fillMaxWidth()
     ) {
+        // TextField that triggers the DatePicker
         TextField(
             value = selectedDate,
             onValueChange = { },
             label = { Text("DOB") },
-            readOnly = false,
-            trailingIcon = {
+            readOnly = true,  // Prevent keyboard input
+            leadingIcon = {
                 IconButton(onClick = { showDatePicker = !showDatePicker }) {
                     Icon(
                         imageVector = Icons.Default.DateRange,
@@ -60,15 +69,16 @@ fun DatePickerDocked() {
             },
             modifier = Modifier
                 .fillMaxWidth()
-                .height(64.dp)
-                .padding(10.dp),
-            shape = shapes.small,
+                .height(55.dp)
+                .clickable { showDatePicker = !showDatePicker }, // Open DatePicker on click
+            shape = MaterialTheme.shapes.small,
             colors = TextFieldDefaults.colors(
-                focusedIndicatorColor = Color.Transparent, // Remove underline
-                unfocusedIndicatorColor = Color.Transparent // Remove underline
+                focusedIndicatorColor = Color.Transparent,
+                unfocusedIndicatorColor = Color.Transparent
             )
         )
 
+        // DatePicker with a spring animation
         if (showDatePicker) {
             Popup(
                 onDismissRequest = { showDatePicker = false },
@@ -77,7 +87,7 @@ fun DatePickerDocked() {
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .offset(y = 64.dp)
+                        .offset(y = offsetY)  // Apply spring animation on offset
                         .shadow(elevation = 4.dp)
                         .background(MaterialTheme.colorScheme.surface)
                         .padding(16.dp)
@@ -92,6 +102,7 @@ fun DatePickerDocked() {
     }
 }
 
+// Utility function to convert milliseconds to date string
 fun convertMillisToDate(millis: Long): String {
     val formatter = SimpleDateFormat("MM/dd/yyyy", Locale.getDefault())
     return formatter.format(Date(millis))
