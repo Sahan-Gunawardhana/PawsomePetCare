@@ -11,5 +11,4 @@ enum class Screens(val route: String) {
     ProductScreen("ProductScreen"),
     FavouritesScreen("FavouritesScreen"),
     CheckOutScreen("CheckOutScreen")
-
 }

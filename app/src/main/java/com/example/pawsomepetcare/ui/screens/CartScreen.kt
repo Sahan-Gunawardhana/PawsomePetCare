@@ -48,35 +48,35 @@ fun CartScreen(navController: NavController, modifier: Modifier = Modifier) {
     ) {
         // First Cart Item
         CartItem(
-            imageResourceId = R.drawable.dog_food_2,
+            imageResourceId = R.drawable.product_4,
             itemName = stringResource(id = R.string.product_1),
             itemPrice = stringResource(id = R.string.product_1_price),
             quantity = "x2",
             onDeleteClick = { /*TODO*/ }
         )
         CartItem(
-            imageResourceId = R.drawable.cat_food_2,
+            imageResourceId = R.drawable.product_2,
             itemName = stringResource(id = R.string.product_2),
             itemPrice = stringResource(id = R.string.product_2_price),
             quantity = "x1",
             onDeleteClick = { /*TODO*/ }
         )
         CartItem(
-            imageResourceId = R.drawable.dog_food_1,
+            imageResourceId = R.drawable.product_3,
             itemName = stringResource(id = R.string.product_3),
             itemPrice = stringResource(id = R.string.product_3_price),
             quantity = "x2",
             onDeleteClick = { /*TODO*/ }
         )
         CartItem(
-            imageResourceId = R.drawable.dog_toy_1,
+            imageResourceId = R.drawable.product_7,
             itemName = stringResource(id = R.string.product_4),
             itemPrice = stringResource(id = R.string.product_4_price),
             quantity = "x2",
             onDeleteClick = { /*TODO*/ }
         )
         CartItem(
-            imageResourceId = R.drawable.dog_food_3,
+            imageResourceId = R.drawable.product_5,
             itemName = stringResource(id = R.string.product_5),
             itemPrice = stringResource(id = R.string.product_5_price),
             quantity = "x5",

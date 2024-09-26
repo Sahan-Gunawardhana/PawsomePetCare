@@ -1,5 +1,6 @@
 package com.example.pawsomepetcare.navigation
 
+import FavouritesScreen
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -85,7 +86,7 @@ fun AppNavigation(modifier: Modifier = Modifier) {
                 shouldShowTopBarSettings(route) -> {
                     TopBarSettings(
                         title = screenName,
-                        onSettingsClick = { /* Handle settings click */ }
+                        navController = navController
                     )
                 }
                 else -> null
@@ -124,6 +125,9 @@ fun AppNavigation(modifier: Modifier = Modifier) {
             }
             composable(route = Screens.ProfileScreen.route, enterTransition = { fadeIn(tween(10))}, exitTransition = { fadeOut(tween(10))}) {
                 ProfileScreen(navController)
+            }
+            composable(route = Screens.FavouritesScreen.route, enterTransition = { fadeIn(tween(10))}, exitTransition = { fadeOut(tween(10))}) {
+                FavouritesScreen(navController)
             }
         }
     }
