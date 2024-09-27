@@ -2,20 +2,19 @@ package com.example.pawsomepetcare.ui.screens
 
 import DatePickerDocked
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.IntrinsicSize
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
@@ -38,11 +37,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -54,98 +51,60 @@ import com.example.pawsomepetcare.R
 import com.example.pawsomepetcare.navigation.Screens
 import com.example.pawsomepetcare.ui.theme.PawsomePetCareTheme
 
-
 @Composable
-fun SignUpScreen(navController: NavHostController, modifier: Modifier = Modifier){
-
+fun SignUpScreen(navController: NavHostController, modifier: Modifier = Modifier) {
     val colors = MaterialTheme.colorScheme
-    val name = remember {
-        mutableStateOf("")
-    }
-    val username = remember {
-        mutableStateOf("")
-    }
-    val password = remember {
-        mutableStateOf("")
-    }
-    val email = remember {
-        mutableStateOf("")
-    }
-    val tele = remember {
-        mutableStateOf("")
-    }
+    val name = remember { mutableStateOf("") }
+    val username = remember { mutableStateOf("") }
+    val password = remember { mutableStateOf("") }
+    val email = remember { mutableStateOf("") }
+    val tele = remember { mutableStateOf("") }
 
     Column(
         modifier = modifier
             .fillMaxSize()
             .background(colors.background)
-            .verticalScroll(rememberScrollState())
-            .height(intrinsicSize = IntrinsicSize.Min)
-    ) {
-        Box(
-            modifier = Modifier
-                .height(450.dp)
-        ) {
-            Image(
-                painter = painterResource(id = R.drawable.signup_main),
-                contentDescription = null,
-                contentScale = ContentScale.FillBounds,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(450.dp),
-            )
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .background(
-                        brush = Brush.verticalGradient(
-                            colors = listOf(
-                                Color.Transparent,
-                                colors.background.copy(0.5f),
-                                colors.background.copy(1f)
-                            ),
-                            startY = 400f,
-                            endY = 1200f
-                        )
-                    )
-            )
-        }
-        Box(
-            modifier = Modifier
-                .offset(y = (-300).dp) // Move 100 dp up
-                .background(colors.background, shape = shapes.small)
-                .border(
-                    BorderStroke(0.2.dp, colors.primary),
-                    shape = shapes.small
-                )
-                .padding(16.dp)
-                .widthIn(max = 300.dp)
-                .height(intrinsicSize = IntrinsicSize.Min)
-                .align(Alignment.CenterHorizontally),
+            .verticalScroll(rememberScrollState()),
+        horizontalAlignment = Alignment.CenterHorizontally
 
-            ) {
+
+    ) {
+
+        // Form Box
+        Box(
+            modifier = Modifier
+                .background(colors.background, shape = shapes.small)
+
+                .padding(16.dp)
+                .fillMaxWidth() // Ensure it fills available width
+                .align(Alignment.CenterHorizontally),
+        ) {
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Top,
                 modifier = Modifier
                     .fillMaxSize()
-                    .height(IntrinsicSize.Min)
                     .padding(10.dp)
+                    .border(
+                        BorderStroke(0.2.dp, colors.primary),
+                        shape = shapes.small
+                    )
+                    .padding(vertical = 16.dp)
             ) {
                 Text(
                     text = stringResource(id = R.string.signup_title),
                     style = typography.titleLarge,
                     color = colors.onBackground
                 )
+
+                // The other TextFields and buttons remain unchanged
                 Spacer(modifier = Modifier.height(36.dp))
+
+                // Name Field
                 TextField(
                     value = name.value,
-                    onValueChange = {
-                        name.value = it
-                    },
-                    label = {
-                        Text(text = stringResource(id = R.string.signup_name_text_field))
-                    },
+                    onValueChange = { name.value = it },
+                    label = { Text(text = stringResource(id = R.string.signup_name_text_field)) },
                     leadingIcon = {
                         Icon(
                             imageVector = Icons.Filled.Person,
@@ -154,23 +113,18 @@ fun SignUpScreen(navController: NavHostController, modifier: Modifier = Modifier
                     },
                     shape = shapes.small,
                     colors = TextFieldDefaults.colors(
-                        focusedIndicatorColor = Color.Transparent, // Remove underline
-                        unfocusedIndicatorColor = Color.Transparent // Remove underline
+                        focusedIndicatorColor = Color.Transparent,
+                        unfocusedIndicatorColor = Color.Transparent
                     )
                 )
 
                 Spacer(modifier = Modifier.height(16.dp))
 
+                // Username Field
                 TextField(
                     value = username.value,
-                    onValueChange = {
-                        username.value = it
-                    },
-                    label = {
-                        Text(
-                            text = stringResource(id = R.string.signup_user_name_text_field)
-                        )
-                    },
+                    onValueChange = { username.value = it },
+                    label = { Text(text = stringResource(id = R.string.signup_user_name_text_field)) },
                     leadingIcon = {
                         Icon(
                             imageVector = Icons.Filled.Person,
@@ -182,52 +136,46 @@ fun SignUpScreen(navController: NavHostController, modifier: Modifier = Modifier
                         focusedIndicatorColor = Color.Transparent,
                         unfocusedIndicatorColor = Color.Transparent
                     ),
-
                 )
                 Spacer(modifier = Modifier.height(16.dp))
+
+                // Password Field
                 TextField(
                     value = password.value,
-                    onValueChange = {
-                        password.value = it
-                    },
-                    label = {
-                        Text(text = stringResource(id = R.string.signup_password_text_field))
-                    },
+                    onValueChange = { password.value = it },
+                    label = { Text(text = stringResource(id = R.string.signup_password_text_field)) },
                     leadingIcon = {
                         Icon(
                             imageVector = Icons.Filled.Lock,
                             contentDescription = stringResource(R.string.signup_password_desc)
                         )
-                    },keyboardOptions = KeyboardOptions.Default.copy(
+                    },
+                    keyboardOptions = KeyboardOptions.Default.copy(
                         keyboardType = KeyboardType.Text,
                         imeAction = ImeAction.Next
                     ),
                     shape = shapes.small,
                     colors = TextFieldDefaults.colors(
-                        focusedIndicatorColor = Color.Transparent, // Remove underline
-                        unfocusedIndicatorColor = Color.Transparent // Remove underline
+                        focusedIndicatorColor = Color.Transparent,
+                        unfocusedIndicatorColor = Color.Transparent
                     ),
                     visualTransformation = PasswordVisualTransformation()
                 )
 
                 Spacer(modifier = Modifier.height(16.dp))
 
+                // Email Field
                 TextField(
                     value = email.value,
-                    onValueChange = {
-                        email.value = it
-                    },
-                    label = {
-                        Text(
-                            text = stringResource(id = R.string.signup_email)
-                        )
-                    },
+                    onValueChange = { email.value = it },
+                    label = { Text(text = stringResource(id = R.string.signup_email)) },
                     leadingIcon = {
                         Icon(
                             imageVector = Icons.Filled.Email,
                             contentDescription = stringResource(R.string.signup_email_desc)
                         )
-                    },keyboardOptions = KeyboardOptions.Default.copy(
+                    },
+                    keyboardOptions = KeyboardOptions.Default.copy(
                         keyboardType = KeyboardType.Email,
                         imeAction = ImeAction.Done
                     ),
@@ -236,17 +184,14 @@ fun SignUpScreen(navController: NavHostController, modifier: Modifier = Modifier
                         focusedIndicatorColor = Color.Transparent,
                         unfocusedIndicatorColor = Color.Transparent
                     ),
-
                 )
                 Spacer(modifier = Modifier.height(16.dp))
+
+                // Phone Field
                 TextField(
                     value = tele.value,
-                    onValueChange = {
-                        tele.value = it
-                    },
-                    label = {
-                        Text(text = stringResource(id = R.string.signup_tele))
-                    },
+                    onValueChange = { tele.value = it },
+                    label = { Text(text = stringResource(id = R.string.signup_tele)) },
                     leadingIcon = {
                         Icon(
                             imageVector = Icons.Filled.Phone,
@@ -255,13 +200,21 @@ fun SignUpScreen(navController: NavHostController, modifier: Modifier = Modifier
                     },
                     shape = shapes.small,
                     colors = TextFieldDefaults.colors(
-                        focusedIndicatorColor = Color.Transparent, // Remove underline
-                        unfocusedIndicatorColor = Color.Transparent // Remove underline
+                        focusedIndicatorColor = Color.Transparent,
+                        unfocusedIndicatorColor = Color.Transparent
                     )
                 )
                 Spacer(modifier = Modifier.height(16.dp))
-                DatePickerDocked()
+
+                // Date Picker
+               Row(
+                   modifier = Modifier.padding(horizontal = 30.dp)
+               ) {
+                   DatePickerDocked()
+               }
                 Spacer(modifier = Modifier.height(16.dp))
+
+                // Sign Up Button
                 Button(
                     onClick = { navController.navigate(Screens.LoginScreen.name) },
                     elevation = ButtonDefaults.buttonElevation(
@@ -274,25 +227,39 @@ fun SignUpScreen(navController: NavHostController, modifier: Modifier = Modifier
                         contentColor = colors.onPrimaryContainer
                     )
                 ) {
-                    Text(
-                        text = stringResource(R.string.signup_button_text),
-                    )
+                    Text(text = stringResource(R.string.signup_button_text))
                 }
-
             }
-
-
         }
-        Text(text = stringResource(id = R.string.signup_redirect_to_sign_up))
+
+        // Redirect Text
+        Spacer(modifier = Modifier.height(16.dp)) // Add space below the form
+        Row {
+                Text(
+                    text = stringResource(id = R.string.signup_redirect_to_sign_up),
+                    style = typography.bodyMedium,
+                    color = colors.onBackground
+                )
+                Spacer(modifier = Modifier.width(3.dp))
+                Text(
+                    text = stringResource(id = R.string.signup_redirect_to_sign_clickable_text),
+                    style = typography.bodyMedium.copy(color = colors.secondary),
+                    fontWeight = FontWeight(600),
+                    modifier = Modifier
+                        .clickable {
+
+                        }
+                )
+        }
     }
 }
 
-
-
 @Preview
 @Composable
-fun SNPV(){
+fun SNPV() {
     PawsomePetCareTheme {
         SignUpScreen(navController = rememberNavController())
     }
 }
+
+

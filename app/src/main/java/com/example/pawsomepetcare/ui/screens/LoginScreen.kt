@@ -209,7 +209,7 @@ fun LoginScreen(navController: NavController, modifier: Modifier = Modifier) {
                 fontWeight = FontWeight(600),
                 modifier = Modifier
                     .clickable {
-                        navController.navigate("SignUp")
+
                     }
             )
         }
