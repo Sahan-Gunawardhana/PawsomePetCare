@@ -25,7 +25,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.pawsomepetcare.model.Product
 
-
+//cart item cards for each item
 @Composable
 fun CartItemCard(item: Product, quantity: String, onDeleteClick: () -> Unit) {
     val colors = MaterialTheme.colorScheme

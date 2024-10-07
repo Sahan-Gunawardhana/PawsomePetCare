@@ -10,7 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.DropdownMenu
 import androidx.compose.material.DropdownMenuItem
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBackIosNew
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -41,26 +41,30 @@ import com.example.pawsomepetcare.navigation.Screens
 import com.example.pawsomepetcare.ui.theme.PawsomePetCareTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
+
 @Composable
 fun TopBarSettings(
-    title:String,
+    title: String,
     navController: NavController
 ) {
     val colors = MaterialTheme.colorScheme
-    var showmenu by remember {
-        mutableStateOf(false)
-    }
+    var showmenu by remember { mutableStateOf(false) }
     val context = LocalContext.current
 
+    // Animation for the rotation of the settings icon
     val rotation by animateFloatAsState(
-        targetValue = if (showmenu) 180f else 90f,
+        targetValue = if (showmenu) 90f else 0f, // Changed initial rotation to 0f
         animationSpec = tween(durationMillis = 1000)
     )
     TopAppBar(
-        title = { Text(text =title) },
+        title = { Text(text = title) },
         actions = {
             IconButton(onClick = { showmenu = !showmenu }) {
-                Icon(imageVector = Icons.Default.Settings, contentDescription = "Settings", modifier = Modifier.graphicsLayer(rotationZ = rotation))
+                Icon(
+                    imageVector = Icons.Default.Settings,
+                    contentDescription = "Settings",
+                    modifier = Modifier.graphicsLayer(rotationZ = rotation)
+                )
             }
             DropdownMenu(
                 offset = DpOffset(60.dp, 0.dp),
@@ -68,20 +72,25 @@ fun TopBarSettings(
                 onDismissRequest = { showmenu = false },
                 modifier = Modifier.background(color = colors.background),
             ) {
-                DropdownMenuItem(onClick = { navController.navigate(Screens.FavouritesScreen.route) }) {
+                DropdownMenuItem(onClick = {
+                    navController.navigate(Screens.FavouritesScreen.route)
+                    showmenu = false // Hide the dropdown after navigation
+                }) {
                     Text(text = "Favourites")
                 }
+
                 DropdownMenuItem(onClick = {
+                    // Clear the navigation stack to avoid returning to home after logout
                     navController.navigate(Screens.LoginScreen.route) {
-                        popUpTo(Screens.LandingScreen.route) { inclusive = true }
-                        launchSingleTop = true
-                        restoreState = true
+                        popUpTo(0) { inclusive = true } // Clear all backstack
+                        launchSingleTop = true // Ensure only one login screen is launched
                     }
+                    showmenu = false // Hide the dropdown after logout
                 }) {
                     Text(
                         text = "Log Out",
                         style = typography.labelLarge,
-                        fontWeight = FontWeight(900),
+                        fontWeight = FontWeight.Bold,
                         color = colors.error
                     )
                 }
@@ -94,21 +103,29 @@ fun TopBarSettings(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopBarSettingsWithGreeting(
-    onSettingsClick:() -> Unit,
-){
+    onSettingsClick: () -> Unit,
+    navController: NavController
+) {
     val colors = MaterialTheme.colorScheme
+    var showMenu by remember { mutableStateOf(false) }
+    val rotation by animateFloatAsState(
+        targetValue = if (showMenu) 90f else 0f, // Changed initial rotation to 0f
+        animationSpec = tween(durationMillis = 1000)
+    )
+
+
     Row(
         modifier = Modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Column(
             modifier = Modifier
-                .padding(start = 16.dp, top = 33.dp)
+                .padding(start = 16.dp, top = 16.dp)
         ) {
             Text(
                 text = stringResource(R.string.home_greeting),
                 style = typography.titleMedium,
-                fontWeight = FontWeight(600),
+                fontWeight = FontWeight.Bold,
                 color = colors.onBackground
             )
             Text(
@@ -117,14 +134,42 @@ fun TopBarSettingsWithGreeting(
                 color = colors.onBackground
             )
         }
+
         TopAppBar(
             title = { Text(text = "") },
-
             actions = {
-                IconButton(
-                    onClick = { /*TODO*/ }
+
+
+                IconButton(onClick = { showMenu = !showMenu }) { // Toggle dropdown menu
+                    Icon(imageVector = Icons.Filled.Settings, contentDescription = "More options", modifier = Modifier.graphicsLayer(rotationZ = rotation))
+                }
+
+                DropdownMenu(
+                    expanded = showMenu,
+                    onDismissRequest = { showMenu = false },
+                    modifier = Modifier.background(color = colors.background),
                 ) {
-                    Icon(imageVector = Icons.Filled.Settings, contentDescription = null)
+                    DropdownMenuItem(onClick = {
+                        navController.navigate(Screens.FavouritesScreen.route)
+                        showMenu = false
+                    }) {
+                        Text(text = "Favourites")
+                    }
+
+                    DropdownMenuItem(onClick = {
+                        navController.navigate(Screens.LoginScreen.route) {
+                            popUpTo(0) { inclusive = true } // Clear all backstack
+                            launchSingleTop = true
+                        }
+                        showMenu = false // Hide the dropdown after logout
+                    }) {
+                        Text(
+                            text = "Log Out",
+                            style = typography.labelLarge,
+                            fontWeight = FontWeight.Bold,
+                            color = colors.error
+                        )
+                    }
                 }
             }
         )
@@ -134,42 +179,26 @@ fun TopBarSettingsWithGreeting(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopBarSettingsWithBack(
+    onBackArrowClick: () -> Unit,
     onSettingsClick: () -> Unit,
-    onBackArrowClick: () -> Unit
-){
+) {
     val colors = MaterialTheme.colorScheme
     TopAppBar(
         title = { Text(text = "") },
         navigationIcon = {
             IconButton(
-                onClick = { /*TODO*/ }
+                onClick = {
+                    onBackArrowClick()
+                }
             ) {
-                Icon(imageVector = Icons.Filled.ArrowBackIosNew, contentDescription = null)
+                Icon(imageVector = Icons.Filled.ArrowBack, contentDescription = "Back")
             }
         },
-        actions = {
-            IconButton(
-                onClick = { /*TODO*/ }
-            ) {
-                Icon(imageVector = Icons.Filled.Settings, contentDescription = null)
-            }
-        }
+
     )
 }
 
 
-@Preview(showBackground = true)
-@Composable
-fun TopBarWithBackButtonPreview() {
-    PawsomePetCareTheme {
-        Surface {
-            TopBarSettingsWithBack(
-                onBackArrowClick = {},
-                onSettingsClick = {}
-            )
-        }
-    }
-}
 
 @Preview(showBackground = true)
 @Composable
@@ -186,16 +215,5 @@ fun TopBarWithBackButtonPreview2() {
 
 
 
-@Preview(showBackground = true)
-@Composable
-fun TopBarWithBackButtonPreview3() {
-    PawsomePetCareTheme {
-        Surface {
-            TopBarSettingsWithGreeting {
-
-            }
-        }
-    }
-}
 
 

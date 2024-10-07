@@ -37,13 +37,12 @@ import java.util.Locale
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DatePickerDocked() {
+fun DatePickerDocked(label:String) {
     var showDatePicker by remember { mutableStateOf(false) }
     val datePickerState = rememberDatePickerState()
     val selectedDate = datePickerState.selectedDateMillis?.let {
         convertMillisToDate(it)
     } ?: ""
-
     // Spring animation for showing and hiding the DatePicker
     val offsetY by animateDpAsState(
         targetValue = if (showDatePicker) 0.dp else (-300).dp,
@@ -57,7 +56,7 @@ fun DatePickerDocked() {
         TextField(
             value = selectedDate,
             onValueChange = { },
-            label = { Text("DOB") },
+            label = { Text(label) },
             readOnly = true,  // Prevent keyboard input
             leadingIcon = {
                 IconButton(onClick = { showDatePicker = !showDatePicker }) {

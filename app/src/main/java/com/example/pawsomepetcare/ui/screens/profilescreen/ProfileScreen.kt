@@ -40,6 +40,7 @@ fun ProfileScreen(navController: NavController, modifier: Modifier = Modifier) {
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp)
+            .background(colors.background)
     ) {
         Column(
             modifier = Modifier

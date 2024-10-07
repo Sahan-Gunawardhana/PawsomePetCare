@@ -32,6 +32,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.pawsomepetcare.R
 import com.example.pawsomepetcare.model.Product
 
 @Composable
@@ -102,7 +103,7 @@ fun ProductCardTwo(product: Product, navController: NavController) {
                         Icon(
                             imageVector = Icons.Filled.Delete,
                             tint = colors.error,
-                            contentDescription = "Remove from favorites"
+                            contentDescription = stringResource(R.string.remove_from_favorites)
                         )
                     }
                     Button(
@@ -111,10 +112,13 @@ fun ProductCardTwo(product: Product, navController: NavController) {
                             containerColor = colors.primaryContainer,
                             contentColor = colors.onPrimaryContainer
                         ),
-                        shape = MaterialTheme.shapes.medium
+                        elevation = ButtonDefaults.elevatedButtonElevation(
+                            defaultElevation = 8.dp,
+                            pressedElevation = 8.dp
+                        )
                     ) {
                         Text(
-                            text = "Buy",
+                            text = stringResource(R.string.buy),
                             style = typography.labelLarge,
 
                         )

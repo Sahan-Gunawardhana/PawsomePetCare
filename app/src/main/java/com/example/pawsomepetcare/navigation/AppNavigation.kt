@@ -1,5 +1,6 @@
 package com.example.pawsomepetcare.navigation
 
+import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -17,10 +18,10 @@ import com.example.pawsomepetcare.ui.Common.BottomNavBar
 import com.example.pawsomepetcare.ui.Common.TopBarSettings
 import com.example.pawsomepetcare.ui.Common.TopBarSettingsWithBack
 import com.example.pawsomepetcare.ui.Common.TopBarSettingsWithGreeting
-import com.example.pawsomepetcare.ui.screens.LandingScreen
-import com.example.pawsomepetcare.ui.screens.LoginScreen
-import com.example.pawsomepetcare.ui.screens.ProductDetails
-import com.example.pawsomepetcare.ui.screens.SignUpScreen
+import com.example.pawsomepetcare.ui.screens.landingScreen.LandingScreen
+import com.example.pawsomepetcare.ui.screens.loginScreen.LoginScreen
+import com.example.pawsomepetcare.ui.screens.productsScreen.ProductDetails
+import com.example.pawsomepetcare.ui.screens.signUp.SignUpScreen
 import com.example.pawsomepetcare.ui.screens.cartscreen.CartScreen
 import com.example.pawsomepetcare.ui.screens.favouritesscreen.FavouritesScreen
 import com.example.pawsomepetcare.ui.screens.homescreen.HomeScreen
@@ -32,18 +33,18 @@ import com.example.pawsomepetcare.ui.screens.servicesscreen.ServicesScreen
 fun AppNavigation(modifier: Modifier = Modifier) {
     val navController = rememberNavController()
 
+    //displays the top bar on the correct screens
     fun shouldShowBottomBar(route: String?): Boolean {
         return when (route) {
             Screens.HomeScreen.route,
             Screens.ServicesScreen.route,
             Screens.CartScreen.route,
             Screens.ProductScreen.route,
-            Screens.ProfileScreen.route,
-            "productDetails/{productId}"-> true
+            Screens.ProfileScreen.route, -> true
             else -> false
         }
     }
-
+    //displays the top bar on the correct screens
     fun shouldShowTopBarWithBack(route: String?): Boolean {
         return when (route) {
             Screens.ProductScreen.route,
@@ -53,11 +54,11 @@ fun AppNavigation(modifier: Modifier = Modifier) {
             else -> false
         }
     }
-
+    //displays the top bar on the correct screens
     fun shouldShowTopBarWithGreeting(route: String?): Boolean {
         return route == Screens.HomeScreen.route
     }
-
+    //displays the top bar on the correct screens
     fun shouldShowTopBarSettings(route: String?): Boolean {
         return when (route) {
             Screens.ServicesScreen.route,
@@ -78,14 +79,15 @@ fun AppNavigation(modifier: Modifier = Modifier) {
             when {
                 shouldShowTopBarWithBack(route) -> {
                     TopBarSettingsWithBack(
-                        onBackArrowClick = { navController.navigate(Screens.HomeScreen.route) },
-                        onSettingsClick = { /* Handle settings click */ }
+                        onBackArrowClick = { navController.popBackStack() },
+                        onSettingsClick = {}
                     )
                 }
 
                 shouldShowTopBarWithGreeting(route) -> {
                     TopBarSettingsWithGreeting (
-                        onSettingsClick = { /* Handle settings click */ }
+                        onSettingsClick = { /* Handle settings click */ },
+                        navController = navController
                     )
                 }
 
@@ -110,53 +112,56 @@ fun AppNavigation(modifier: Modifier = Modifier) {
             modifier = Modifier
                 .padding(paddingValues)
         ) {
-            composable(route = Screens.LandingScreen.route) {
+            composable(
+                route = Screens.LandingScreen.route,enterTransition = { fadeIn(tween(1000))}, exitTransition = { fadeOut(tween(1000))}
+            ) {
                 LandingScreen(navController)
             }
-            composable(route = Screens.SignUpScreen.route) {
+            composable(
+                route = Screens.SignUpScreen.route,enterTransition = { fadeIn(tween(1000))}, exitTransition = { fadeOut(tween(1000))}
+            ) {
                 SignUpScreen(navController)
             }
-            composable(route = Screens.LoginScreen.route) {
+            composable(
+                route = Screens.LoginScreen.route,enterTransition = { fadeIn(tween(1000))}, exitTransition = { fadeOut(tween(1000))}
+            ) {
                 LoginScreen(navController)
             }
-            composable(route = Screens.HomeScreen.route, enterTransition = { fadeIn(tween(1000))}, exitTransition = { fadeOut(tween(1000))}) {
+            composable(route = Screens.HomeScreen.route, enterTransition = { fadeIn(tween(500))}, exitTransition = { fadeOut(tween(500))}) {
                 HomeScreen(navController)
             }
-            composable(route = Screens.ServicesScreen.route, enterTransition = { fadeIn(tween(1000))}, exitTransition = { fadeOut(tween(1000))}) {
+            composable(route = Screens.ServicesScreen.route, enterTransition = { fadeIn(tween(500))}, exitTransition = { fadeOut(tween(500))}) {
                 ServicesScreen(navController)
             }
-            composable(route = Screens.CartScreen.route, enterTransition = { fadeIn(tween(1000))}, exitTransition = { fadeOut(tween(1000))}) {
+            composable(route = Screens.CartScreen.route, enterTransition = { fadeIn(tween(500))}, exitTransition = { fadeOut(tween(500))}) {
                 CartScreen(navController)
             }
-            composable(route = Screens.ProfileScreen.route, enterTransition = { fadeIn(tween(1000))}, exitTransition = { fadeOut(tween(1000))}) {
+            composable(route = Screens.ProfileScreen.route, enterTransition = { fadeIn(tween(500))}, exitTransition = { fadeOut(tween(500))}) {
                 ProfileScreen(navController)
             }
-            composable(route = Screens.FavouritesScreen.route, enterTransition = { fadeIn(tween(1000))}, exitTransition = { fadeOut(tween(1000))}) {
+            composable(route = Screens.FavouritesScreen.route, enterTransition = { fadeIn(tween(500))}, exitTransition = { fadeOut(tween(500))}) {
                 FavouritesScreen(navController)
             }
             composable(
-                route = "productDetails/{productId}",enterTransition = { fadeIn(tween(1000))}, exitTransition = { fadeOut(tween(10) )},arguments = listOf(navArgument("productId"){type = NavType.StringType} )
-            ){
-               navBackStackEntry -> val productId = navBackStackEntry.arguments?.getString("productId")?:""
-               ProductDetails(productId = productId, navController = navController)
+                route = "productDetails/{productId}",
+                enterTransition = {
+                    slideIntoContainer(
+                        AnimatedContentTransitionScope.SlideDirection.Up,
+                        tween(1000)
+                    )
+                },
+                exitTransition = {
+                    slideOutOfContainer(
+                        AnimatedContentTransitionScope.SlideDirection.Down,
+                        tween(1000)
+                    )
+                },
+                //fetches the relevant master view to the products
+                arguments = listOf(navArgument("productId") { type = NavType.StringType })
+            ) { navBackStackEntry ->
+                val productId = navBackStackEntry.arguments?.getString("productId") ?: ""
+                ProductDetails(productId = productId, navController = navController)
             }
         }
     }
 }
-
-
-//
-//NavHost(navController = navController, startDestination = "landing"){
-//    composable("Landing"){
-//        LandingScreen(navController,modifier)
-//    }
-//    composable("Login"){
-//        LoginScreen(navController,modifier)
-//    }
-//    composable("SignUp"){
-//        SignUpScreen(navController,modifier)
-//    }
-//    composable("Home"){
-//        HomeScreen(navController,modifier)
-//    }
-//}

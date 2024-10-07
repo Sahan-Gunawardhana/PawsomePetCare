@@ -1,6 +1,7 @@
-package com.example.pawsomepetcare.ui.screens
+package com.example.pawsomepetcare.ui.screens.productsScreen
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -41,7 +42,7 @@ import com.example.pawsomepetcare.ui.Common.ProductCardOne
 @Composable
 fun ProductDetails(productId: String, navController: NavController) {
     val colors = MaterialTheme.colorScheme
-    val products = DataSource().loadProducts()
+    val ftProducts = DataSource().loadFeaturedProducts()
     val product = DataSource().getProductById(productId)
     var count by remember { mutableStateOf(1) }
 
@@ -49,6 +50,7 @@ fun ProductDetails(productId: String, navController: NavController) {
         Column(
             modifier = Modifier
                 .padding(16.dp)
+                .background(colors.background)
                 .fillMaxWidth()
                 .verticalScroll(rememberScrollState()),
         ) {
@@ -123,7 +125,6 @@ fun ProductDetails(productId: String, navController: NavController) {
                     Text(text = "Add to Cart")
                 }
             }
-
             HorizontalDivider()
             Spacer(modifier = Modifier.height(24.dp))
 
@@ -135,7 +136,7 @@ fun ProductDetails(productId: String, navController: NavController) {
             )
 
             LazyRow {
-                items(products) { product ->
+                items(ftProducts) { product ->
                     ProductCardOne(product, navController)
                 }
             }

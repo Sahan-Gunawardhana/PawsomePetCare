@@ -1,4 +1,4 @@
-package com.example.pawsomepetcare.ui.screens
+package com.example.pawsomepetcare.ui.screens.landingScreen
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -27,13 +27,10 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.example.pawsomepetcare.R
 import com.example.pawsomepetcare.navigation.Screens
-import com.example.pawsomepetcare.ui.theme.PawsomePetCareTheme
 
 @Composable
 fun LandingScreen(navController:NavController,modifier: Modifier = Modifier) {
@@ -146,13 +143,4 @@ fun LandingScreen(navController:NavController,modifier: Modifier = Modifier) {
         }
     }
 }
-@Preview(name = "Light Mode")
-@Composable
-fun LandingScreenPreview() {
-    // Providing a default NavController as preview cannot use a real one
-    val navController = rememberNavController()
 
-    PawsomePetCareTheme {
-        LandingScreen(navController = navController)
-    }
-}

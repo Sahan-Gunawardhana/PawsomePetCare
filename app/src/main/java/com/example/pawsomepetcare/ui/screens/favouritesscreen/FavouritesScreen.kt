@@ -24,6 +24,8 @@ import com.example.pawsomepetcare.data.DataSource
 import com.example.pawsomepetcare.ui.Common.ProductCardTwo
 import com.example.pawsomepetcare.ui.theme.PawsomePetCareTheme
 
+
+//favourites screen
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FavouritesScreen(navController: NavController, modifier: Modifier = Modifier) {
@@ -47,11 +49,11 @@ fun FavouritesScreen(navController: NavController, modifier: Modifier = Modifier
             color = colors.onPrimaryContainer
         )
 
-        // Display favourites with spacing and a divider
+
         favs.forEach { fav ->
             ProductCardTwo(fav, navController)
             Spacer(modifier = Modifier.height(16.dp))
-            HorizontalDivider(color = colors.onBackground.copy(alpha = 0.2f), thickness = 1.dp) // Divider
+            HorizontalDivider(color = colors.onBackground.copy(alpha = 0.2f), thickness = 1.dp)
         }
     }
 }

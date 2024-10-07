@@ -1,6 +1,7 @@
 package com.example.pawsomepetcare.ui.screens.cartscreen
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -13,6 +14,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Delete
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.HorizontalDivider
@@ -24,6 +26,10 @@ import androidx.compose.material3.MaterialTheme.typography
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -40,11 +46,13 @@ import com.example.pawsomepetcare.ui.theme.PawsomePetCareTheme
 @Composable
 fun CartScreen(navController: NavController, modifier: Modifier = Modifier) {
     val colors = MaterialTheme.colorScheme
+    var showDialog by remember { mutableStateOf(false) }
     Column(
         modifier = modifier
             .fillMaxSize()
             .padding(top = 0.dp, bottom = 16.dp, start = 16.dp, end = 16.dp)
             .verticalScroll(rememberScrollState())
+            .background(colors.background)
     ) {
         // First Cart Item
         CartItem(
@@ -52,21 +60,21 @@ fun CartScreen(navController: NavController, modifier: Modifier = Modifier) {
             itemName = stringResource(id = R.string.black_hawk_adult_food),
             itemPrice = stringResource(id = R.string.black_hawk_adult_price),
             quantity = "x2",
-            onDeleteClick = { /*TODO*/ }
+            onDeleteClick = { }
         )
         CartItem(
             imageResourceId = R.drawable.dog2,
             itemName = stringResource(id = R.string.royal_canine_puppy_food),
             itemPrice = stringResource(id = R.string.royal_canine_puppy_price),
             quantity = "x1",
-            onDeleteClick = { /*TODO*/ }
+            onDeleteClick = {  }
         )
         CartItem(
             imageResourceId = R.drawable.cat1,
             itemName = stringResource(id = R.string.nutra_nuggets_cat_food),
             itemPrice = stringResource(id = R.string.nutra_nuggets_cat_price),
             quantity = "x2",
-            onDeleteClick = { /*TODO*/ }
+            onDeleteClick = { }
         )
         HorizontalDivider(
             color = colors.primary,
@@ -79,8 +87,8 @@ fun CartScreen(navController: NavController, modifier: Modifier = Modifier) {
                 .padding(top = 16.dp),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            Text(text = "Sub-total")
-            Text(text = "$210.00")
+            Text(text = stringResource(R.string.sub_total))
+            Text(text = stringResource(R.string.sub_total_2))
         }
         Row(
             modifier = Modifier
@@ -88,8 +96,8 @@ fun CartScreen(navController: NavController, modifier: Modifier = Modifier) {
                 .padding(top = 16.dp, bottom = 16.dp),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            Text(text = "Shipping")
-            Text(text = "$14.00")
+            Text(text = stringResource(R.string.shipping))
+            Text(text = stringResource(R.string.shipping_total))
         }
         HorizontalDivider(
             color = colors.error,
@@ -117,7 +125,7 @@ fun CartScreen(navController: NavController, modifier: Modifier = Modifier) {
             horizontalArrangement = Arrangement.SpaceAround
         ) {
             Button(
-                onClick = { /*TODO*/ },
+                onClick = {  },
                 colors = ButtonDefaults.buttonColors(
                     containerColor = colors.errorContainer,
                     contentColor = colors.onErrorContainer
@@ -129,8 +137,20 @@ fun CartScreen(navController: NavController, modifier: Modifier = Modifier) {
             ) {
                 Text(text = "Continue Browsing")
             }
+
+            if (showDialog) {
+                AlertDialog(
+                    onDismissRequest = { showDialog = false },
+                    title = { Text(text = stringResource(R.string.cart_thankyou)) },
+                    text = { Text(text = stringResource(R.string.cart_sub)) },
+                    confirmButton = {
+
+                    }
+                )
+            }
+
             Button(
-                onClick = { /*TODO*/ },
+                onClick = { showDialog = true },
                 colors = ButtonDefaults.buttonColors(
                     containerColor = colors.primaryContainer,
                     contentColor = colors.onPrimaryContainer
@@ -140,7 +160,7 @@ fun CartScreen(navController: NavController, modifier: Modifier = Modifier) {
                     focusedElevation = 8.dp
                 )
             ) {
-                Text(text = "Proceed to Checkout")
+                Text(text = stringResource(id = R.string.cart_confirm))
             }
         }
     }
@@ -191,12 +211,9 @@ fun CartItem(
     )
 }
 
-
-
 @Preview(showBackground = true)
 @Composable
 fun CartScreenPreview() {
-    // Use a dummy NavController for preview purposes
     PawsomePetCareTheme {
         Surface(
             modifier = Modifier.fillMaxWidth()

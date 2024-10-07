@@ -1,10 +1,11 @@
 package com.example.pawsomepetcare.data
 
 import com.example.pawsomepetcare.R
+import com.example.pawsomepetcare.model.News
 import com.example.pawsomepetcare.model.Product
 import com.example.pawsomepetcare.model.Service
 
-
+//loads all the products to the data source
 class DataSource {
     fun loadProducts(): List<Product> {
         return listOf<Product>(
@@ -36,57 +37,75 @@ class DataSource {
         )
     }
 
+    //licks out a random products from the data source
     fun loadFeaturedProducts(): List<Product> {
         val allProducts = loadProducts()
-        return allProducts.shuffled().take(5)
+        return allProducts.shuffled().take(3)
     }
 
-
+    //loads dog supplies from the products
     fun loadDogProducts(): List<Product> {
         val allProducts = loadProducts()
         return allProducts.filter { product ->
             product.id in listOf("1", "2", "3", "4", "5", "6", "7", "8")
         }
     }
-
+    //loads cat supplies from the products
     fun loadCatProducts(): List<Product> {
         val allProducts = loadProducts()
         return allProducts.filter { product ->
             product.id in listOf("9", "10", "12", "13", "14", "15", "16", "17", "18", "19", "20")
         }
     }
-
+    //loads bird supplies from the products
     fun loadBirdProducts(): List<Product> {
         val allProducts = loadProducts()
         return allProducts.filter { product ->
             product.id in listOf( "22", "23", "24")
         }
     }
-
+    //loads supplies from the products to the cart
     fun loadToCart():List<Product>{
         val cartProduct = loadProducts()
         return cartProduct.filter {
             product-> product.id  in listOf("10","1","4","5")
         }
     }
-
+    //loads the services to the services page
     fun loadService():List<Service>{
         return listOf<Service>(
             Service("1",R.string.services_c_service_1,R.drawable.services_1),
-            Service("1",R.string.services_c_service_2,R.drawable.services_2),
-            Service("1",R.string.services_c_service_3,R.drawable.services_3),
-            Service("1",R.string.services_c_service_4,R.drawable.services_4),
-            Service("1",R.string.services_c_service_5,R.drawable.services_5),
-            Service("1",R.string.services_c_service_6,R.drawable.services_6)
+            Service("2",R.string.services_c_service_2,R.drawable.services_2),
+            Service("3",R.string.services_c_service_3,R.drawable.services_3),
+            Service("4",R.string.services_c_service_4,R.drawable.services_4),
+            Service("5",R.string.services_c_service_5,R.drawable.services_5),
+            Service("6",R.string.services_c_service_6,R.drawable.services_6)
         )
     }
 
+    //loads favourites to the page
     fun loadFavourites(): List<Product>{
         val allProducts = loadProducts()
         return allProducts.filter { product-> product.id in listOf("1","5","16")  }
     }
 
+    //filters the data according to product it and feeds it to the master view
     fun getProductById(productId: String?): Product? {
         return loadProducts().find { it.id == productId }
     }
+    //loads the news
+    fun loadNews(): List<News> {
+        return listOf<News>(
+            News("1",
+                R.string.our_new_store,
+                R.string.openning,
+                R.drawable.openning),
+            News("2",
+                R.string.grooming,
+                R.string.grooming_1,
+                R.drawable.newgrooming)
+        )
+    }
+
+
 }

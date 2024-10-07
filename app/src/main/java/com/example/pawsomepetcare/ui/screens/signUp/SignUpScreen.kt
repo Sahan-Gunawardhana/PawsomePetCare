@@ -1,9 +1,7 @@
-package com.example.pawsomepetcare.ui.screens
+package com.example.pawsomepetcare.ui.screens.signUp
 
 import DatePickerDocked
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -85,10 +83,6 @@ fun SignUpScreen(navController: NavHostController, modifier: Modifier = Modifier
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(10.dp)
-                    .border(
-                        BorderStroke(0.2.dp, colors.primary),
-                        shape = shapes.small
-                    )
                     .padding(vertical = 16.dp)
             ) {
                 Text(
@@ -208,9 +202,9 @@ fun SignUpScreen(navController: NavHostController, modifier: Modifier = Modifier
 
                 // Date Picker
                Row(
-                   modifier = Modifier.padding(horizontal = 30.dp)
+                   modifier = Modifier.padding(horizontal = 60.dp)
                ) {
-                   DatePickerDocked()
+                   DatePickerDocked("Birthday")
                }
                 Spacer(modifier = Modifier.height(16.dp))
 

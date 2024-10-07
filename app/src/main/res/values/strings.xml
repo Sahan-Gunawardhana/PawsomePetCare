@@ -32,8 +32,8 @@
     <string name="signup_email_desc">E-mail</string>
 
     //Home page
-    <string name="featured">Today\'s Pick\'s</string>
-    <string name="home_search">Search Pet Supplies</string>
+    <string name="featured">Today\'s Picks</string>
+    <string name="home_search">Search</string>
     <string name="home_greeting">Welcome John!</string>
     <string name="home_greeting_two">Welcome to Pawsome Pet Care</string>
 
@@ -63,9 +63,6 @@
     <string name="services_c_service_4">Dog in a doggy daycare sniffing the camera</string>
     <string name="services_c_service_5">Dog in a doggy daycare sniffing the camera</string>
     <string name="services_c_service_6">Dog in a doggy daycare sniffing the camera</string>
-
-
-
 
 
     //Profile order history
@@ -186,5 +183,20 @@
     <string name="gem_pharma_multivitamin">Gem Pharma Multivitamin</string>
     <string name="gem_pharma_multivitamin_price">$19.99</string>
     <string name="gem_pharma_multivitamin_desc">A high-quality multivitamin supplement to promote overall well-being in birds.</string>
+    <string name="our_new_store">Our New Store</string>
+    <string name="openning">Come visit us as our latest store with all the exciting things for your pets</string>
+    <string name="grooming">Best of the Best</string>
+    <string name="grooming_1">Leave your pet with us for the best care</string>
+    <string name="cart_confirm">Proceed to Checkout</string>
+    <string name="cart_sub">Thank you for shopping with us! Your checkout page will appear shortly.</string>
+    <string name="cart_thankyou">Thank You!</string>
+    <string name="sub_total">Sub-total</string>
+    <string name="sub_total_2">$210.00</string>
+    <string name="shipping">Shipping</string>
+    <string name="shipping_total">$14.00</string>
+    <string name="remove_from_favorites">Remove from favorites</string>
+    <string name="buy">Buy</string>
+    <string name="ok">OK</string>
+    <string name="confirm">Confirm</string>
 
 </resources>

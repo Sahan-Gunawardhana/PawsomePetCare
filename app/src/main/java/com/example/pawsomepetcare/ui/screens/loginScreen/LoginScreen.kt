@@ -1,4 +1,4 @@
-package com.example.pawsomepetcare.ui.screens
+package com.example.pawsomepetcare.ui.screens.loginScreen
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -140,8 +140,8 @@ fun LoginScreen(navController: NavController, modifier: Modifier = Modifier) {
                     },
                     shape = shapes.small,
                     colors = TextFieldDefaults.colors(
-                        focusedIndicatorColor = Color.Transparent, // Remove underline
-                        unfocusedIndicatorColor = Color.Transparent // Remove underline
+                        focusedIndicatorColor = Color.Transparent,
+                        unfocusedIndicatorColor = Color.Transparent
                     )
                 )
 
@@ -209,7 +209,7 @@ fun LoginScreen(navController: NavController, modifier: Modifier = Modifier) {
                 fontWeight = FontWeight(600),
                 modifier = Modifier
                     .clickable {
-
+                        navController.navigate(Screens.SignUpScreen.name)
                     }
             )
         }

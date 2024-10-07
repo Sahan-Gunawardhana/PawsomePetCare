@@ -1,8 +1,8 @@
 package com.example.pawsomepetcare.ui.screens.homescreen
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -11,14 +11,17 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.MaterialTheme.typography
+import androidx.compose.material3.ScrollableTabRow
+import androidx.compose.material3.Tab
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -33,6 +36,7 @@ import com.example.pawsomepetcare.ui.Common.ProductCardOne
 import com.example.pawsomepetcare.ui.Common.SearchBar
 import com.example.pawsomepetcare.ui.theme.PawsomePetCareTheme
 
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(navController: NavController, modifier: Modifier = Modifier){
@@ -41,6 +45,7 @@ fun HomeScreen(navController: NavController, modifier: Modifier = Modifier){
     val dogProducts = DataSource().loadDogProducts()
     val catProducts = DataSource().loadCatProducts()
     val birdProducts = DataSource().loadBirdProducts()
+    val newslist = DataSource().loadNews()
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -49,12 +54,15 @@ fun HomeScreen(navController: NavController, modifier: Modifier = Modifier){
                 start = 16.dp,
                 end = 16.dp,
                 bottom = 16.dp
-            ) // Apply padding to the entire column
-            .verticalScroll(rememberScrollState()),
+            )
+            .verticalScroll(rememberScrollState())
+            .background(colors.background),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         SearchBar()
+        Spacer(modifier = Modifier.height(15.dp))
+        NewsPager(newsList = newslist)
         Spacer(modifier = Modifier.height(15.dp))
         Text(
             text = stringResource(R.string.featured),
@@ -70,149 +78,49 @@ fun HomeScreen(navController: NavController, modifier: Modifier = Modifier){
             }
         }
 
-        Column(
-        ) {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceEvenly
-            ) {
-                Button(
-                    onClick = { /*TODO*/ },
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = colors.primaryContainer,
-                        contentColor = colors.onPrimaryContainer
-                    ),
-                    elevation = ButtonDefaults.buttonElevation(
-                        focusedElevation = 8.dp,
-                        defaultElevation = 8.dp
-                    ),
-                    modifier = Modifier
-                        .weight(1f)
-                        .padding(end = 4.dp)
-                ) {
-
-                    Text(text = "Dog Supplies", modifier = Modifier.padding(start = 8.dp))
-                }
-                Button(
-                    onClick = { /*TODO*/ },
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = colors.primaryContainer,
-                        contentColor = colors.onPrimaryContainer
-                    ),
-                    elevation = ButtonDefaults.buttonElevation(
-                        focusedElevation = 8.dp,
-                        defaultElevation = 8.dp
-                    ),
-                    modifier = Modifier
-                        .weight(1f)
-                        .padding(start = 4.dp)
-                ) {
-
-                    Text(text = "Cat Supplies", modifier = Modifier.padding(start = 8.dp))
-                }
-            }
-            Spacer(modifier = Modifier.height(8.dp))
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceEvenly
-            ) {
-                Button(
-                    onClick = { /*TODO*/ },
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = colors.primaryContainer,
-                        contentColor = colors.onPrimaryContainer
-                    ),
-                    elevation = ButtonDefaults.buttonElevation(
-                        focusedElevation = 8.dp,
-                        defaultElevation = 8.dp
-                    ),
-                    modifier = Modifier
-                        .weight(1f)
-                        .padding(end = 4.dp)
-                ) {
-
-                    Text(text = "Bird Supplies", modifier = Modifier.padding(start = 8.dp))
-                }
-                Button(
-                    onClick = { /*TODO*/ },
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = colors.primaryContainer,
-                        contentColor = colors.onPrimaryContainer
-                    ),
-                    elevation = ButtonDefaults.buttonElevation(
-                        focusedElevation = 8.dp,
-                        defaultElevation = 8.dp
-                    ),
-                    modifier = Modifier
-                        .weight(1f)
-                        .padding(start = 4.dp)
-                ) {
-
-                    Text(text = "Other", modifier = Modifier.padding(start = 8.dp))
-                }
-            }
-        }
-
-        Column(
+        Text(text = "Browse Our Store",style = MaterialTheme.typography.headlineSmall,
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 8.dp)
-        ) {
-            // Dog Suppliers Section
-            Text(
-                text = "Dog Suppliers",
-                style = MaterialTheme.typography.headlineMedium,
-                modifier = Modifier
-                    .align(Alignment.Start)
-                    .padding(start = 8.dp, bottom = 4.dp) // Added padding for better spacing
-            )
-            LazyRow(
-                modifier = Modifier.padding(bottom = 16.dp) // Space between sections
-            ) {
-                items(dogProducts) { product ->
-                    ProductCardOne(product, navController)
-                }
-            }
+                .align(Alignment.Start)
+                .padding(start = 8.dp, bottom = 8.dp, top = 8.dp))
 
-            HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
+        ProductTabs(navController)
+    }
+}
 
-            // Cat Suppliers Section
-            Text(
-                text = "Cat Suppliers",
-                style = MaterialTheme.typography.headlineMedium,
-                modifier = Modifier
-                    .align(Alignment.Start)
-                    .padding(start = 8.dp, bottom = 4.dp) // Added padding for better spacing
-            )
-            LazyRow(
-                modifier = Modifier.padding(bottom = 16.dp) // Space between sections
-            ) {
-                items(catProducts) { product ->
-                    ProductCardOne(product, navController)
-                }
-            }
+@Composable
+fun ProductTabs(navController: NavController) {
+    val tabTitles = listOf("Dogs", "Cats", "Birds")
+    var selectedTabIndex by remember { mutableIntStateOf(0) }
 
-            HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
+    val dogProducts = DataSource().loadDogProducts()
+    val catProducts = DataSource().loadCatProducts()
+    val birdProducts = DataSource().loadBirdProducts()
 
-            // Bird Suppliers Section
-            Text(
-                text = "Bird Suppliers",
-                style = MaterialTheme.typography.headlineMedium,
-                modifier = Modifier
-                    .align(Alignment.Start)
-                    .padding(start = 8.dp, bottom = 4.dp) // Added padding for better spacing
-            )
-            LazyRow(
-                modifier = Modifier.padding(bottom = 16.dp) // Space between sections
-            ) {
-                items(birdProducts) { product ->
-                    ProductCardOne(product, navController)
-                }
+    // Define the content to display based on selected tab
+    val productLists = listOf(
+        dogProducts,
+        catProducts,
+        birdProducts
+    )
+
+    // Render Tabs
+    Column {
+        ScrollableTabRow(selectedTabIndex = selectedTabIndex) {
+            tabTitles.forEachIndexed { index, title ->
+                Tab(
+                    selected = selectedTabIndex == index,
+                    onClick = { selectedTabIndex = index },
+                    text = { Text(title) }
+                )
             }
         }
 
+        // Display the products for the selected tab
+        LazyRow(modifier = Modifier.fillMaxWidth()) {
+            items(productLists[selectedTabIndex]) { product ->
+                ProductCardOne(product = product, navController = navController)
+            }
+        }
     }
 }
 

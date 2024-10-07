@@ -18,7 +18,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.example.pawsomepetcare.R
 
 
 @Composable
@@ -37,7 +36,7 @@ fun leftRight(titleTitleId:String,titleDescId:String,imageResourceId: String){
             Text(text = stringResource(id = titleTitleId.toInt()),style = typography.bodyLarge, fontWeight = FontWeight(600))
             Text(text = stringResource(id = titleDescId.toInt()), style = typography.bodyMedium)
         }
-        Image(painter = painterResource(id = R.drawable.services_4), contentDescription = stringResource(
+        Image(painter = painterResource(id = imageResourceId.toInt()), contentDescription = stringResource(
             id = imageResourceId.toInt()
         ), modifier = Modifier
             .clip(shape = shapes.small)
@@ -56,7 +55,7 @@ fun rightLeft(titleTitleId:String,titleDescId:String,imageResourceId: String){
             .padding(vertical = 8.dp)
             .height(150.dp)
     ) {
-        Image(painter = painterResource(id = R.drawable.services_4), contentDescription = stringResource(
+        Image(painter = painterResource(id = imageResourceId.toInt()), contentDescription = stringResource(
             id = imageResourceId.toInt()
         ), modifier = Modifier
             .clip(shape = shapes.small)
